@@ -1,6 +1,7 @@
 import { TransformerInvalidFormatterError } from '../errors/TransformerInvalidFormatterError';
+import type { ISentencePart } from './ISentencePart';
 
-export class Transformer {
+export class Transformer implements ISentencePart {
 	private readonly kRun: IFormatter;
 
 	public constructor(name: string) {

@@ -1,6 +1,7 @@
 import { PickInvalidOptionError } from '../errors/PickInvalidOptionError';
+import type { ISentencePart } from './ISentencePart';
 
-export class Pick {
+export class Pick implements ISentencePart {
 	private readonly kOptions: ReadonlyMap<string | typeof Pick.kFallback, string>;
 
 	public constructor(options: ReadonlyMap<string, string>) {
