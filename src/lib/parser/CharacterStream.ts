@@ -1,5 +1,4 @@
 export class CharacterStream {
-	private finished = false;
 	private character = '';
 	private iterator: IterableIterator<string>;
 
@@ -12,12 +11,9 @@ export class CharacterStream {
 	}
 
 	public next(): boolean {
-		if (this.finished) return false;
-
 		const value = this.iterator.next();
 
 		if (value.done) {
-			this.finished = true;
 			this.character = '';
 			return false;
 		}

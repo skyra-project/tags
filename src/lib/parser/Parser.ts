@@ -1,4 +1,5 @@
 import { ParserMissingTokenError } from '../errors/ParserMissingTokenError';
+import { ParserPickMissingOptionsError } from '../errors/ParserPickMissingOptionsError';
 import { ParserUnexpectedTokenError } from '../errors/ParserUnexpectedTokenError';
 import { Pick, PickMapKey } from '../structures/Pick';
 import { Sentence, SentencePart, SentencePartType } from '../structures/Sentence';
@@ -39,8 +40,18 @@ export class Parser {
 	}
 
 	private next() {
-		const part = this.kBacktrackBuffer.length ? this.kBacktrackBuffer.pop() : (this.kParts.next().value as ReadonlyPart | undefined);
-		if (typeof part === 'undefined') throw new ParserMissingTokenError();
+		if (this.kBacktrackBuffer.length) return this.kBacktrackBuffer.pop()!;
+
+		const result = this.kParts.next();
+		if (result.done) throw new ParserMissingTokenError();
+
+		return result.value;
+	}
+
+	private nextExcluding(excluded: PartType) {
+		let part: ReadonlyPart | undefined = undefined;
+		while ((part = this.next()).type === excluded) continue;
+
 		return part;
 	}
 
@@ -52,7 +63,7 @@ export class Parser {
 	}
 
 	private validate<T extends PartType>(part: ReadonlyPart, type: T): asserts part is ReadonlyPart & { type: T } {
-		if (part.type !== type) throw new ParserUnexpectedTokenError();
+		if (part.type !== type) throw new ParserUnexpectedTokenError(type, part.type);
 	}
 
 	/**
@@ -70,7 +81,7 @@ export class Parser {
 		if (type === 'pick') {
 			pick = this.parsePick();
 		} else {
-			const part = this.next();
+			const part = this.nextExcluding(PartType.Space);
 			if (part.type === PartType.Colon) {
 				// {name:type [| transformer0[| transformer1]]}
 				name = type;
@@ -82,22 +93,20 @@ export class Parser {
 				// {type}
 				finished = true;
 			} else {
-				throw new ParserUnexpectedTokenError();
+				throw new ParserUnexpectedTokenError([PartType.Colon, PartType.Pipe, PartType.TagEnd], part.type);
 			}
 		}
 
 		while (!finished) {
-			const part = this.next();
-			// 1. Spaces are ignored:
-			if (part.type === PartType.Space) continue;
+			const part = this.nextExcluding(PartType.Space);
 
-			// 2. If encountered a tag end, cut:
+			// 1. If encountered a tag end, cut:
 			if (part.type === PartType.TagEnd) {
 				finished = true;
 				break;
 			}
 
-			// 3. If encountered a pipe, parse transformer:
+			// 1. If encountered a pipe, parse transformer:
 			this.validate(part, PartType.Pipe);
 			transformers.push(this.parsePipeTokens());
 		}
@@ -108,11 +117,10 @@ export class Parser {
 	private parsePick(): Pick {
 		const map = new Map<PickMapKey, string>();
 
-		for (const part of this.kParts) {
-			// 1. Spaces are ignored:
-			if (part.type === PartType.Space) continue;
+		while (true) {
+			const part = this.nextExcluding(PartType.Space);
 
-			// 2. If a tag end or a pipe has been encountered, add the part to the backtrack buffer and break:
+			// 1. If a tag end or a pipe has been encountered, add the part to the backtrack buffer and break:
 			if (part.type === PartType.TagEnd || part.type === PartType.Pipe) {
 				this.kBacktrackBuffer.push(part);
 				break;
@@ -126,6 +134,11 @@ export class Parser {
 			map.set(key, value);
 		}
 
+		// 4. Throw if the pick has no options:
+		if (map.size === 0) {
+			throw new ParserPickMissingOptionsError();
+		}
+
 		return new Pick(map);
 	}
 
@@ -134,18 +147,13 @@ export class Parser {
 	 * Expected: `[...Space] <Literal>`.
 	 */
 	private parseTagType(): string {
-		for (const part of this.kParts) {
-			// 1. Spaces are ignored:
-			if (part.type === PartType.Space) continue;
+		const part = this.nextExcluding(PartType.Space);
 
-			// 2. Validate first part: <Literal> |> `=[ ]option`:
-			this.validate(part, PartType.Literal);
+		// 1. Validate first part: <Literal> |> `=[ ]option`:
+		this.validate(part, PartType.Literal);
 
-			// 3. Return the literal value:
-			return part.value;
-		}
-
-		throw new ParserMissingTokenError();
+		// 2. Return the literal value:
+		return part.value;
 	}
 
 	/**
@@ -153,36 +161,34 @@ export class Parser {
 	 * Expected: `[...Space] <Literal> <TagStart> <Literal> <TagEnd>`.
 	 */
 	private parseOptionTokens(): readonly [PickMapKey, string] {
-		for (const part of this.kParts) {
-			// 1. Spaces are ignored:
-			if (part.type === PartType.Space) continue;
+		const part = this.nextExcluding(PartType.Space);
 
-			let name: PickMapKey = Pick.kFallback;
+		let name: PickMapKey = Pick.kFallback;
 
-			// 2. Validate second part: <Literal> |> `=[ ]option`:
-			if (part.type === PartType.Literal) {
-				name = part.value.trim();
+		// 1. Overloaded, two options:
+		// -> 1.1. `=[ ]option{`.
+		// -> 1.2. `=[ ]{`.
 
-				// 2.1. Validate continuation of second part: <Literal> |> `=[ ]option{`:
-				this.pick(PartType.TagStart);
-			} else {
-				name = Pick.kFallback;
+		// 1.1.1. Validate second part: <Literal> |> `=[ ]option`:
+		if (part.type === PartType.Literal) {
+			name = part.value.trim();
 
-				// 2.2. Validate alternative of second part: <Literal> |> `=[ ]{`:
-				this.validate(part, PartType.TagStart);
-			}
-
-			// 4. Validate third part: <Literal> |> `=[ ]option{content`:
-			const content = this.pick(PartType.Literal);
-
-			// 5. Validate fourth part: <TagEnd> |> `=[ ]option{content}`:
-			this.pick(PartType.TagEnd);
-
-			// 6. Return the key and value as a tuple:
-			return [name, content.value] as const;
+			// 1.1.1. Validate continuation of second part: <TagStart> |> `=[ ]option{`:
+			this.pick(PartType.TagStart);
+		} else {
+			// 1.2.1 Validate alternative of second part: <TagStart> |> `=[ ]{`:
+			this.validate(part, PartType.TagStart);
 		}
 
-		throw new ParserMissingTokenError();
+		// 2. Validate third part: <Literal> |> `=[ ]option{content`:
+		const content = this.pick(PartType.Literal);
+
+		// 3. Validate fourth part: <TagEnd> |> `=[ ]option{content}`:
+		// 3.1. Push to Backtrack so TagEnd is available:
+		this.kBacktrackBuffer.push(this.pick(PartType.TagEnd));
+
+		// 4. Return the key and value as a tuple:
+		return [name, content.value] as const;
 	}
 
 	/**
@@ -190,13 +196,10 @@ export class Parser {
 	 * Expected: `[...Space] <Literal>`.
 	 */
 	private parsePipeTokens() {
-		for (const part of this.kParts) {
-			if (part.type === PartType.Space) continue;
-			if (part.type === PartType.Literal) return new Transformer(part.value.trim());
-			throw new ParserUnexpectedTokenError();
-		}
+		const part = this.nextExcluding(PartType.Space);
 
-		throw new ParserMissingTokenError();
+		this.validate(part, PartType.Literal);
+		return new Transformer(part.value.trim());
 	}
 
 	private tokenToString(part: ReadonlyPart): string {
