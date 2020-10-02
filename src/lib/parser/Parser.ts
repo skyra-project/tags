@@ -1,6 +1,6 @@
 import { ParserMissingTokenError } from '../errors/ParserMissingTokenError';
 import { ParserUnexpectedTokenError } from '../errors/ParserUnexpectedTokenError';
-import { Pick } from '../structures/Pick';
+import { Pick, PickMapKey } from '../structures/Pick';
 import { Sentence, SentencePart, SentencePartType } from '../structures/Sentence';
 import { Tag } from '../structures/Tag';
 import { Transformer } from '../structures/Transformer';
@@ -106,7 +106,7 @@ export class Parser {
 	}
 
 	private parsePick(): Pick {
-		const map = new Map<string, string>();
+		const map = new Map<PickMapKey, string>();
 
 		for (const part of this.kParts) {
 			// 1. Spaces are ignored:
@@ -152,16 +152,25 @@ export class Parser {
 	 * Called When: part.type is `PartType.Equals`.
 	 * Expected: `[...Space] <Literal> <TagStart> <Literal> <TagEnd>`.
 	 */
-	private parseOptionTokens(): readonly [string, string] {
+	private parseOptionTokens(): readonly [PickMapKey, string] {
 		for (const part of this.kParts) {
 			// 1. Spaces are ignored:
 			if (part.type === PartType.Space) continue;
 
-			// 2. Validate first part: <Literal> |> `=[ ]option`:
-			this.validate(part, PartType.Literal);
+			let name: PickMapKey = Pick.kFallback;
 
-			// 3. Validate second part: <TagStart> |> `=[ ]option{`:
-			this.pick(PartType.TagStart);
+			// 2. Validate second part: <Literal> |> `=[ ]option`:
+			if (part.type === PartType.Literal) {
+				name = part.value.trim();
+
+				// 2.1. Validate continuation of second part: <Literal> |> `=[ ]option{`:
+				this.pick(PartType.TagStart);
+			} else {
+				name = Pick.kFallback;
+
+				// 2.2. Validate alternative of second part: <Literal> |> `=[ ]{`:
+				this.validate(part, PartType.TagStart);
+			}
 
 			// 4. Validate third part: <Literal> |> `=[ ]option{content`:
 			const content = this.pick(PartType.Literal);
@@ -170,7 +179,7 @@ export class Parser {
 			this.pick(PartType.TagEnd);
 
 			// 6. Return the key and value as a tuple:
-			return [part.value.trim(), content.value] as const;
+			return [name, content.value] as const;
 		}
 
 		throw new ParserMissingTokenError();

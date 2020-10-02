@@ -8,9 +8,9 @@ export class Tag implements ISentencePart {
 	private readonly kPick: Pick | null;
 	private readonly kTransformers: readonly Transformer[];
 
-	public constructor(name: string | null, type: string | null, pick: Pick | null, transformers: readonly Transformer[]) {
-		this.kName = name;
-		this.kType = type;
+	public constructor(name: string, type: string, pick: Pick | null, transformers: readonly Transformer[]) {
+		this.kName = name.length === 0 ? null : name;
+		this.kType = type.length === 0 ? null : type;
 		this.kPick = pick;
 		this.kTransformers = transformers;
 	}
