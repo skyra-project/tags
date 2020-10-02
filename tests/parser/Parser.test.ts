@@ -1,4 +1,5 @@
 import { Lexer, Parser, ParserMissingTokenError, ParserUnexpectedTokenError, Transformer } from '../../src';
+import { ParserOptionMissingContentError } from '../../src/lib/errors/ParserOptionMissingContentError';
 import { ParserPickMissingOptionsError } from '../../src/lib/errors/ParserPickMissingOptionsError';
 
 describe('Lexer', () => {
@@ -22,6 +23,11 @@ describe('Lexer', () => {
 
 	test('Basic Pick Tag', () => {
 		const parser = new Parser(new Lexer('{pick =something{Hi!}}'));
+		expect(() => parser.parse()).not.toThrow();
+	});
+
+	test('Basic Pick Tag | Multiple Words', () => {
+		const parser = new Parser(new Lexer('{pick =something{Hello World!}}'));
 		expect(() => parser.parse()).not.toThrow();
 	});
 
@@ -50,23 +56,28 @@ describe('Lexer', () => {
 		expect(() => parser.parse()).not.toThrow();
 	});
 
-	test('Invalid | Tag Opening | Expected Token', () => {
+	test('Invalid | Tag | Expected Token', () => {
 		const parser = new Parser(new Lexer('{'));
 		expect(() => parser.parse()).toThrow(ParserMissingTokenError);
 	});
 
-	test('Invalid | Tag Opening | Invalid Token (Expected Literal, Received Equals)', () => {
+	test('Invalid | Tag | Invalid Token (Expected Literal, Received Equals)', () => {
 		const parser = new Parser(new Lexer('{='));
 		expect(() => parser.parse()).toThrow(ParserUnexpectedTokenError);
 	});
 
-	test('Invalid | Pick Opening | Missing Options', () => {
+	test('Invalid | Pick | Missing Options', () => {
 		const parser = new Parser(new Lexer('{pick}'));
 		expect(() => parser.parse()).toThrow(ParserPickMissingOptionsError);
 	});
 
-	test('Invalid | Option Opening | Invalid Token (Expected Literal or TagOpen, Received Equals)', () => {
+	test('Invalid | Options | Invalid Token (Expected Literal or TagOpen, Received Equals)', () => {
 		const parser = new Parser(new Lexer('{pick ==}'));
 		expect(() => parser.parse()).toThrow(ParserUnexpectedTokenError);
+	});
+
+	test('Invalid | Options | Missing Content', () => {
+		const parser = new Parser(new Lexer('{pick ={}}'));
+		expect(() => parser.parse()).toThrow(ParserOptionMissingContentError);
 	});
 });

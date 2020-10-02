@@ -1,4 +1,5 @@
 import { ParserMissingTokenError } from '../errors/ParserMissingTokenError';
+import { ParserOptionMissingContentError } from '../errors/ParserOptionMissingContentError';
 import { ParserPickMissingOptionsError } from '../errors/ParserPickMissingOptionsError';
 import { ParserUnexpectedTokenError } from '../errors/ParserUnexpectedTokenError';
 import { Pick, PickMapKey } from '../structures/Pick';
@@ -180,15 +181,36 @@ export class Parser {
 			this.validate(part, PartType.TagStart);
 		}
 
-		// 2. Validate third part: <Literal> |> `=[ ]option{content`:
-		const content = this.pick(PartType.Literal);
+		let buffer = '';
+		let content: ReadonlyPart | undefined = undefined;
+		while (true) {
+			// 2. Validate third part: <Literal> |> `=[ ]option{content`:
+			content = this.next();
 
-		// 3. Validate fourth part: <TagEnd> |> `=[ ]option{content}`:
-		// 3.1. Push to Backtrack so TagEnd is available:
-		this.kBacktrackBuffer.push(this.pick(PartType.TagEnd));
+			// 3. Overloaded, two options:
+			// -> 3.1. <TagEnd> |> `<token...>}`.
+			// -> 3.2. <Any> |> `<token...><token>`.
 
-		// 4. Return the key and value as a tuple:
-		return [name, content.value] as const;
+			// 3.1. If the loop encountered a tag end, stop:
+			if (content.type === PartType.TagEnd) {
+				break;
+			}
+
+			// 3.2. Otherwise convert the token to a string and append it to the buffer:
+			buffer += this.tokenToString(content);
+		}
+
+		// 4. Check if the buffer has enough characters:
+		if (buffer.length === 0) {
+			throw new ParserOptionMissingContentError();
+		}
+
+		// 5. Validate fourth part: <TagEnd> |> `=[ ]option{content}`:
+		// 5.1. Push to Backtrack so TagEnd is available:
+		this.kBacktrackBuffer.push(content);
+
+		// 6. Return the key and value as a tuple:
+		return [name, buffer] as const;
 	}
 
 	/**
