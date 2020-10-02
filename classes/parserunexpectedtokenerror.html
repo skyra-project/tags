@@ -80,8 +80,16 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="parserunexpectedtokenerror.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="parserunexpectedtokenerror.html#kexpected" class="tsd-kind-icon">k<wbr>Expected</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="parserunexpectedtokenerror.html#kreceived" class="tsd-kind-icon">k<wbr>Received</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="parserunexpectedtokenerror.html#message" class="tsd-kind-icon">message</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="parserunexpectedtokenerror.html#name" class="tsd-kind-icon">name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="parserunexpectedtokenerror.html#stack" class="tsd-kind-icon">stack</a></li>
@@ -92,7 +100,56 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Parser<wbr>Unexpected<wbr>Token<wbr>Error<span class="tsd-signature-symbol">(</span>expected<span class="tsd-signature-symbol">: </span><a href="../enums/parttype.html" class="tsd-signature-type">PartType</a><span class="tsd-signature-symbol"> | </span><a href="../enums/parttype.html" class="tsd-signature-type">PartType</a><span class="tsd-signature-symbol">[]</span>, received<span class="tsd-signature-symbol">: </span><a href="../enums/parttype.html" class="tsd-signature-type">PartType</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="parserunexpectedtokenerror.html" class="tsd-signature-type">ParserUnexpectedTokenError</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/skyra-project/tags/blob/c1431f7/src/lib/errors/ParserUnexpectedTokenError.ts#L5">src/lib/errors/ParserUnexpectedTokenError.ts:5</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>expected: <a href="../enums/parttype.html" class="tsd-signature-type">PartType</a><span class="tsd-signature-symbol"> | </span><a href="../enums/parttype.html" class="tsd-signature-type">PartType</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+								<li>
+									<h5>received: <a href="../enums/parttype.html" class="tsd-signature-type">PartType</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="parserunexpectedtokenerror.html" class="tsd-signature-type">ParserUnexpectedTokenError</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="kexpected" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> k<wbr>Expected</h3>
+					<div class="tsd-signature tsd-kind-icon">k<wbr>Expected<span class="tsd-signature-symbol">:</span> <a href="../enums/parttype.html" class="tsd-signature-type">PartType</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">readonly </span><a href="../enums/parttype.html" class="tsd-signature-type">PartType</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/c1431f7/src/lib/errors/ParserUnexpectedTokenError.ts#L4">src/lib/errors/ParserUnexpectedTokenError.ts:4</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="kreceived" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> k<wbr>Received</h3>
+					<div class="tsd-signature tsd-kind-icon">k<wbr>Received<span class="tsd-signature-symbol">:</span> <a href="../enums/parttype.html" class="tsd-signature-type">PartType</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/c1431f7/src/lib/errors/ParserUnexpectedTokenError.ts#L5">src/lib/errors/ParserUnexpectedTokenError.ts:5</a></li>
+						</ul>
+					</aside>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="message" class="tsd-anchor"></a>
 					<h3>message</h3>
@@ -166,11 +223,23 @@
 					<li class=" tsd-kind-class">
 						<a href="parsermissingtokenerror.html" class="tsd-kind-icon">Parser<wbr>Missing<wbr>Token<wbr>Error</a>
 					</li>
+					<li class=" tsd-kind-class">
+						<a href="parserpickmissingoptionserror.html" class="tsd-kind-icon">Parser<wbr>Pick<wbr>Missing<wbr>Options<wbr>Error</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
 						<a href="parserunexpectedtokenerror.html" class="tsd-kind-icon">Parser<wbr>Unexpected<wbr>Token<wbr>Error</a>
 						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="parserunexpectedtokenerror.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="parserunexpectedtokenerror.html#kexpected" class="tsd-kind-icon">k<wbr>Expected</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="parserunexpectedtokenerror.html#kreceived" class="tsd-kind-icon">k<wbr>Received</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="parserunexpectedtokenerror.html#message" class="tsd-kind-icon">message</a>
 							</li>
