@@ -5,7 +5,12 @@ export class Transformer implements ISentencePart {
 	private readonly kRun: IFormatter;
 
 	public constructor(name: string) {
-		this.kRun = Transformer.getFormatter(name);
+		const formatter = Transformer.kFormatters.get(name);
+		if (typeof formatter === 'undefined') {
+			throw new TransformerInvalidFormatterError(this, name, `The key ${name} does not correspond with a valid formatter.`);
+		}
+
+		this.kRun = formatter;
 	}
 
 	public run(value: string): string {
@@ -13,12 +18,6 @@ export class Transformer implements ISentencePart {
 	}
 
 	public static readonly kFormatters = new Map<string, IFormatter>();
-
-	private static getFormatter(name: string): IFormatter {
-		const formatter = this.kFormatters.get(name);
-		if (typeof formatter === 'undefined') throw new TransformerInvalidFormatterError();
-		return formatter;
-	}
 }
 
 export interface IFormatter {

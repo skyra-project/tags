@@ -2,9 +2,9 @@ import { PickInvalidOptionError } from '../errors/PickInvalidOptionError';
 import type { ISentencePart } from './ISentencePart';
 
 export class Pick implements ISentencePart {
-	private readonly kOptions: ReadonlyMap<string | typeof Pick.kFallback, string>;
+	private readonly kOptions: PickData;
 
-	public constructor(options: ReadonlyMap<string, string>) {
+	public constructor(options: PickData) {
 		this.kOptions = options;
 	}
 
@@ -15,8 +15,12 @@ export class Pick implements ISentencePart {
 		const fallback = this.kOptions.get(Pick.kFallback);
 		if (typeof fallback === 'string') return fallback;
 
-		throw new PickInvalidOptionError();
+		throw new PickInvalidOptionError(this, key, `The key ${key} is not a valid option.`);
 	}
 
 	public static readonly kFallback: unique symbol = Symbol('Skyra.Tags.Pick.Fallback');
 }
+
+export type PickMapKey = string | typeof Pick.kFallback;
+export type PickMapValue = string;
+export type PickData = ReadonlyMap<PickMapKey, PickMapValue>;

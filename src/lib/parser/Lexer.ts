@@ -85,6 +85,9 @@ export class Lexer {
 			const char = this.stream.peek();
 			const code = char.codePointAt(0)!;
 			switch (code) {
+				case kCharacterSpace:
+					yield* this.pushPart({ type: PartType.Space });
+					break;
 				case kCharacterTagStart:
 					yield* this.pushPart({ type: PartType.TagStart });
 					break;
@@ -101,12 +104,7 @@ export class Lexer {
 					yield* this.pushPart({ type: PartType.Pipe });
 					break;
 				default:
-					// Space tokens are applied only when the literal buffer is empty:
-					if (this.buffer.length === 0 && code === kCharacterSpace) {
-						yield* this.pushPart({ type: PartType.Space });
-					} else {
-						this.buffer += char;
-					}
+					this.buffer += char;
 			}
 		}
 
