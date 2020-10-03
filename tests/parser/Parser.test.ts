@@ -1,19 +1,22 @@
 import {
 	Lexer,
 	Parser,
+	ParserEmptyStringTagError,
 	ParserMissingTokenError,
+	ParserPickMissingOptionsError,
+	ParserRandomDuplicatedOptionsError,
+	ParserRandomMissingOptionsError,
 	ParserUnexpectedTokenError,
 	Pick,
 	PickMapKey,
 	PickMapValue,
+	Random,
 	SentencePartType,
 	Tag,
 	Transformer
 } from '../../src';
-import { ParserEmptyStringTagError } from '../../src/lib/errors/ParserEmptyStringTagError';
-import { ParserPickMissingOptionsError } from '../../src/lib/errors/ParserPickMissingOptionsError';
 
-describe('Lexer', () => {
+describe('Parser', () => {
 	Transformer.kFormatters.set('uppercase', (value) => value.toUpperCase());
 
 	test('Basic Parser', () => {
@@ -25,82 +28,98 @@ describe('Lexer', () => {
 	test('Basic Tag', () => {
 		const parser = new Parser(new Lexer('{number}'));
 
-		const pick = null;
-		const value = new Tag('', 'number', pick, []);
+		const modifier = null;
+		const value = new Tag('', 'number', modifier, []);
 		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Tag, value }]);
 	});
 
 	test('Basic Named Tag', () => {
 		const parser = new Parser(new Lexer('{name:number}'));
 
-		const pick = null;
-		const value = new Tag('name', 'number', pick, []);
+		const modifier = null;
+		const value = new Tag('name', 'number', modifier, []);
 		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Tag, value }]);
 	});
 
 	test('Basic Pick Tag', () => {
 		const parser = new Parser(new Lexer('{pick =something{Hi!}}'));
 
-		const pick = new Pick(new Map([['something', 'Hi!']]));
-		const value = new Tag('', 'pick', pick, []);
+		const modifier = new Pick(new Map([['something', 'Hi!']]));
+		const value = new Tag('', 'pick', modifier, []);
 		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Tag, value }]);
 	});
 
 	test('Basic Pick Tag | Multiple Words', () => {
 		const parser = new Parser(new Lexer('{pick =something{Hello World!}}'));
 
-		const pick = new Pick(new Map([['something', 'Hello World!']]));
-		const value = new Tag('', 'pick', pick, []);
+		const modifier = new Pick(new Map([['something', 'Hello World!']]));
+		const value = new Tag('', 'pick', modifier, []);
 		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Tag, value }]);
 	});
 
 	test('Basic Pick Tag With Fallback', () => {
 		const parser = new Parser(new Lexer('{pick =something{Hi!} ={Fallback!}}'));
 
-		const pick = new Pick(
+		const modifier = new Pick(
 			new Map<PickMapKey, PickMapValue>([
 				['something', 'Hi!'],
 				[Pick.kFallback, 'Fallback!']
 			])
 		);
-		const value = new Tag('', 'pick', pick, []);
+		const value = new Tag('', 'pick', modifier, []);
+		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Tag, value }]);
+	});
+
+	test('Basic Random Tag', () => {
+		const parser = new Parser(new Lexer('{random {Hey} {Hello there}}'));
+
+		const modifier = new Random(['Hey', 'Hello there']);
+		const value = new Tag('', 'random', modifier, []);
 		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Tag, value }]);
 	});
 
 	test('Basic Tag With Transformers', () => {
 		const parser = new Parser(new Lexer('{number | uppercase}'));
 
-		const pick = null;
-		const value = new Tag('', 'number', pick, [new Transformer('uppercase')]);
+		const modifier = null;
+		const value = new Tag('', 'number', modifier, [new Transformer('uppercase')]);
 		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Tag, value }]);
 	});
 
 	test('Basic Named Tag With Transformers', () => {
 		const parser = new Parser(new Lexer('{name:number | uppercase}'));
 
-		const pick = null;
-		const value = new Tag('name', 'number', pick, [new Transformer('uppercase')]);
+		const modifier = null;
+		const value = new Tag('name', 'number', modifier, [new Transformer('uppercase')]);
 		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Tag, value }]);
 	});
 
 	test('Basic Pick Tag With Transformers', () => {
 		const parser = new Parser(new Lexer('{pick =something{Hi!} | uppercase}'));
 
-		const pick = new Pick(new Map([['something', 'Hi!']]));
-		const value = new Tag('', 'pick', pick, [new Transformer('uppercase')]);
+		const modifier = new Pick(new Map([['something', 'Hi!']]));
+		const value = new Tag('', 'pick', modifier, [new Transformer('uppercase')]);
 		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Tag, value }]);
 	});
 
 	test('Basic Pick Tag With Fallback & Transformers', () => {
 		const parser = new Parser(new Lexer('{pick =something{Hi!} ={Fallback!} | uppercase}'));
 
-		const pick = new Pick(
+		const modifier = new Pick(
 			new Map<PickMapKey, PickMapValue>([
 				['something', 'Hi!'],
 				[Pick.kFallback, 'Fallback!']
 			])
 		);
-		const value = new Tag('', 'pick', pick, [new Transformer('uppercase')]);
+		const value = new Tag('', 'pick', modifier, [new Transformer('uppercase')]);
+		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Tag, value }]);
+	});
+
+	test('Basic Random Tag With Transformers', () => {
+		const parser = new Parser(new Lexer('{random {Hey} {Hello there} | uppercase}'));
+
+		const modifier = new Random(['Hey', 'Hello there']);
+		const value = new Tag('', 'random', modifier, [new Transformer('uppercase')]);
 		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Tag, value }]);
 	});
 
@@ -127,5 +146,20 @@ describe('Lexer', () => {
 	test('Invalid | Options | Missing Content', () => {
 		const parser = new Parser(new Lexer('{pick ={}}'));
 		expect(() => parser.parse()).toThrow(ParserEmptyStringTagError);
+	});
+
+	test('Invalid | Random | Missing Items (0 items)', () => {
+		const parser = new Parser(new Lexer('{random}'));
+		expect(() => parser.parse()).toThrow(ParserRandomMissingOptionsError);
+	});
+
+	test('Invalid | Random | Missing Items (1 items)', () => {
+		const parser = new Parser(new Lexer('{random {hey}}'));
+		expect(() => parser.parse()).toThrow(ParserRandomMissingOptionsError);
+	});
+
+	test('Invalid | Random | Duplicated Items (2 items)', () => {
+		const parser = new Parser(new Lexer('{random {hey} {hey}}'));
+		expect(() => parser.parse()).toThrow(ParserRandomDuplicatedOptionsError);
 	});
 });

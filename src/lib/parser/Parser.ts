@@ -1,8 +1,11 @@
 import { ParserEmptyStringTagError } from '../errors/ParserEmptyStringTagError';
 import { ParserMissingTokenError } from '../errors/ParserMissingTokenError';
 import { ParserPickMissingOptionsError } from '../errors/ParserPickMissingOptionsError';
+import { ParserRandomDuplicatedOptionsError } from '../errors/ParserRandomDuplicatedOptionsError';
+import { ParserRandomMissingOptionsError } from '../errors/ParserRandomMissingOptionsError';
 import { ParserUnexpectedTokenError } from '../errors/ParserUnexpectedTokenError';
 import { Pick, PickMapKey } from '../structures/Pick';
+import { Random } from '../structures/Random';
 import { SentencePart, SentencePartType } from '../structures/Sentence';
 import { Tag } from '../structures/Tag';
 import { Transformer } from '../structures/Transformer';
@@ -74,13 +77,16 @@ export class Parser {
 	private parseTag() {
 		let name = '';
 		let type = this.pick(PartType.Literal).value;
-		let pick: Pick | null = null;
+		let modifier: Pick | Random | null = null;
 		let finished = false;
 		const transformers: Transformer[] = [];
 
-		// {pick =option0{value0} =option1{value1} [| transformer0[| transformer1]]}
 		if (type === 'pick') {
-			pick = this.parsePick();
+			// {pick =option0{value0} =option1{value1} [| transformer0[| transformer1]]}
+			modifier = this.parsePick();
+		} else if (type === 'random') {
+			// {random {key1} {key2} [| transformer0[| transformer1]]}
+			modifier = this.parseRandom();
 		} else {
 			const part = this.nextExcluding(PartType.Space);
 			if (part.type === PartType.Colon) {
@@ -112,7 +118,7 @@ export class Parser {
 			transformers.push(this.parsePipeTokens());
 		}
 
-		return new Tag(name, type, pick, transformers);
+		return new Tag(name, type, modifier, transformers);
 	}
 
 	private parsePick(): Pick {
@@ -141,6 +147,39 @@ export class Parser {
 		}
 
 		return new Pick(map);
+	}
+
+	private parseRandom(): Random {
+		const items: string[] = [];
+
+		while (true) {
+			const part = this.nextExcluding(PartType.Space);
+
+			// 1. If a tag end or a pipe has been encountered, add the part to the backtrack buffer and break:
+			if (part.type === PartType.TagEnd || part.type === PartType.Pipe) {
+				this.kBacktrackBuffer.push(part);
+				break;
+			}
+
+			// 2. Validate first part: <TagStart>:
+			this.validate(part, PartType.TagStart);
+
+			// 3. Read the string tag:
+			// 4. Push the string into the options:
+			items.push(this.parseTagString());
+		}
+
+		// 5. Throw if the random does not have at least 2 items:
+		if (items.length < 2) {
+			throw new ParserRandomMissingOptionsError();
+		}
+
+		// 6. Throw if there is at least one duplicated item:
+		if (new Set(items).size !== items.length) {
+			throw new ParserRandomDuplicatedOptionsError();
+		}
+
+		return new Random(items);
 	}
 
 	/**
