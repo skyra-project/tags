@@ -19,10 +19,52 @@ import {
 describe('Parser', () => {
 	Transformer.kFormatters.set('uppercase', (value) => value.toUpperCase());
 
-	test('Basic Parser', () => {
+	test('Basic Parser | Lexer Overload', () => {
 		const lexer = new Lexer('');
 		const parser = new Parser(lexer);
 		expect(parser.kParts).not.toBe(lexer);
+	});
+
+	test('Basic Parser | Iterator Overload', () => {
+		const lexer = new Lexer('');
+		const iterator = lexer[Symbol.iterator]();
+		const parser = new Parser(iterator);
+		expect(parser.kParts).toBe(iterator);
+	});
+
+	test('Basic Literal', () => {
+		const parser = new Parser(new Lexer('Hello world!'));
+		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Literal, value: 'Hello world!' }]);
+	});
+
+	test('Literal + Tag', () => {
+		const parser = new Parser(new Lexer('Hello world! {number}'));
+		expect(parser.parse()).toStrictEqual([
+			{ type: SentencePartType.Literal, value: 'Hello world! ' },
+			{ type: SentencePartType.Tag, value: new Tag('', 'number', null, []) }
+		]);
+	});
+
+	test('Tag + Literal', () => {
+		const parser = new Parser(new Lexer('{number} Hello world!'));
+		expect(parser.parse()).toStrictEqual([
+			{ type: SentencePartType.Tag, value: new Tag('', 'number', null, []) },
+			{ type: SentencePartType.Literal, value: ' Hello world!' }
+		]);
+	});
+
+	test('Literal + Tag + Literal', () => {
+		const parser = new Parser(new Lexer('Hello! Your pick was: {number}!'));
+		expect(parser.parse()).toStrictEqual([
+			{ type: SentencePartType.Literal, value: 'Hello! Your pick was: ' },
+			{ type: SentencePartType.Tag, value: new Tag('', 'number', null, []) },
+			{ type: SentencePartType.Literal, value: '!' }
+		]);
+	});
+
+	test('Tokens As Literal', () => {
+		const parser = new Parser(new Lexer(' }=:|'));
+		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Literal, value: ' }=:|' }]);
 	});
 
 	test('Basic Tag', () => {
@@ -123,7 +165,7 @@ describe('Parser', () => {
 		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Tag, value }]);
 	});
 
-	test('Invalid | Tag | Expected Token', () => {
+	test('Invalid | Tag | Expected Token (Literal)', () => {
 		const parser = new Parser(new Lexer('{'));
 		expect(() => parser.parse()).toThrow(ParserMissingTokenError);
 	});
@@ -133,9 +175,34 @@ describe('Parser', () => {
 		expect(() => parser.parse()).toThrow(ParserUnexpectedTokenError);
 	});
 
+	test('Invalid | Tag | Invalid Token After Name (Expected Colon, Pipe, of TagEnd, Received TagStart)', () => {
+		const parser = new Parser(new Lexer('{thing {'));
+		expect(() => parser.parse()).toThrow(ParserUnexpectedTokenError);
+	});
+
+	test('Invalid | Tag | Invalid Token After Name (Expected Colon, Pipe, of TagEnd, Received Equals)', () => {
+		const parser = new Parser(new Lexer('{thing ='));
+		expect(() => parser.parse()).toThrow(ParserUnexpectedTokenError);
+	});
+
 	test('Invalid | Pick | Missing Options', () => {
 		const parser = new Parser(new Lexer('{pick}'));
 		expect(() => parser.parse()).toThrow(ParserPickMissingOptionsError);
+	});
+
+	test('Invalid | Pick | Unexpected Token (Expected Equals, Received Literal)', () => {
+		const parser = new Parser(new Lexer('{pick something}'));
+		expect(() => parser.parse()).toThrow(ParserUnexpectedTokenError);
+	});
+
+	test('Invalid | Pick | Unexpected Token (Expected TagStart, Received TagEnd)', () => {
+		const parser = new Parser(new Lexer('{pick =something}'));
+		expect(() => parser.parse()).toThrow(ParserUnexpectedTokenError);
+	});
+
+	test('Invalid | Pick | Expected Token (TagStart)', () => {
+		const parser = new Parser(new Lexer('{pick =something'));
+		expect(() => parser.parse()).toThrow(ParserMissingTokenError);
 	});
 
 	test('Invalid | Options | Invalid Token (Expected Literal or TagOpen, Received Equals)', () => {
