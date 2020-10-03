@@ -1,4 +1,8 @@
+export * from './lib/errors/ParserEmptyStringTagError';
 export * from './lib/errors/ParserMissingTokenError';
+export * from './lib/errors/ParserPickMissingOptionsError';
+export * from './lib/errors/ParserRandomMissingOptionsError';
+export * from './lib/errors/ParserRandomDuplicatedOptionsError';
 export * from './lib/errors/ParserUnexpectedTokenError';
 export * from './lib/errors/PickInvalidOptionError';
 export * from './lib/errors/SentenceMissingArgumentError';
@@ -6,6 +10,7 @@ export * from './lib/errors/TransformerInvalidFormatterError';
 export * from './lib/parser/Lexer';
 export * from './lib/parser/Parser';
 export * from './lib/structures/Pick';
+export * from './lib/structures/Random';
 export * from './lib/structures/Sentence';
 export * from './lib/structures/Tag';
 export * from './lib/structures/Transformer';
