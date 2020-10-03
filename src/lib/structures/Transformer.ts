@@ -7,7 +7,7 @@ export class Transformer implements ISentencePart {
 	public constructor(name: string) {
 		const formatter = Transformer.kFormatters.get(name);
 		if (typeof formatter === 'undefined') {
-			throw new TransformerInvalidFormatterError(this, name, `The key ${name} does not correspond with a valid formatter.`);
+			throw new TransformerInvalidFormatterError(this, name);
 		}
 
 		this.kRun = formatter;
