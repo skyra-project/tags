@@ -1,5 +1,5 @@
-export class ParserRandomDuplicatedOptionsError extends Error {
+export class ParserRandomDuplicatedOptionsError extends SyntaxError {
 	public constructor() {
-		super('A random tag cannot have duplicated items.');
+		super('Random tags cannot have duplicated items.');
 	}
 }

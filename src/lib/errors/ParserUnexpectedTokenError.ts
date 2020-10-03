@@ -1,6 +1,6 @@
 import { PartType } from '../parser/Lexer';
 
-export class ParserUnexpectedTokenError extends Error {
+export class ParserUnexpectedTokenError extends SyntaxError {
 	public readonly kExpected: PartType | readonly PartType[];
 	public readonly kReceived: PartType;
 

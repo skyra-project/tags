@@ -1,5 +1,5 @@
-export class ParserRandomMissingOptionsError extends Error {
+export class ParserRandomMissingOptionsError extends SyntaxError {
 	public constructor() {
-		super('A random tag must have at least two items.');
+		super('Random tags must have at least two items.');
 	}
 }
