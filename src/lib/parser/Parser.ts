@@ -37,7 +37,6 @@ export class Parser {
 
 		if (buffer.length > 0) {
 			parts.push({ type: SentencePartType.Literal, value: buffer });
-			buffer = '';
 		}
 
 		return parts;
@@ -109,7 +108,6 @@ export class Parser {
 
 			// 1. If encountered a tag end, cut:
 			if (part.type === PartType.TagEnd) {
-				finished = true;
 				break;
 			}
 
