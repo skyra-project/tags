@@ -1,9 +1,9 @@
+import { ParserEmptyStringTagError } from '../errors/ParserEmptyStringTagError';
 import { ParserMissingTokenError } from '../errors/ParserMissingTokenError';
-import { ParserOptionMissingContentError } from '../errors/ParserOptionMissingContentError';
 import { ParserPickMissingOptionsError } from '../errors/ParserPickMissingOptionsError';
 import { ParserUnexpectedTokenError } from '../errors/ParserUnexpectedTokenError';
 import { Pick, PickMapKey } from '../structures/Pick';
-import { Sentence, SentencePart, SentencePartType } from '../structures/Sentence';
+import { SentencePart, SentencePartType } from '../structures/Sentence';
 import { Tag } from '../structures/Tag';
 import { Transformer } from '../structures/Transformer';
 import { Lexer, PartIterator, PartType, ReadonlyPart } from './Lexer';
@@ -37,7 +37,7 @@ export class Parser {
 			buffer = '';
 		}
 
-		return new Sentence(parts);
+		return parts;
 	}
 
 	private next() {
@@ -181,36 +181,38 @@ export class Parser {
 			this.validate(part, PartType.TagStart);
 		}
 
+		// 2. Read the string tag:
+		const content = this.parseTagString();
+
+		// 3. Return the key and value as a tuple:
+		return [name, content] as const;
+	}
+
+	private parseTagString() {
 		let buffer = '';
-		let content: ReadonlyPart | undefined = undefined;
 		while (true) {
-			// 2. Validate third part: <Literal> |> `=[ ]option{content`:
-			content = this.next();
+			// 1. Validate third part: <Literal> |> `=[ ]option{content`:
+			const content = this.next();
 
-			// 3. Overloaded, two options:
-			// -> 3.1. <TagEnd> |> `<token...>}`.
-			// -> 3.2. <Any> |> `<token...><token>`.
+			// 2. Overloaded, two options:
+			// -> 2.1. <TagEnd> |> `<token...>}`.
+			// -> 2.2. <Any> |> `<token...><token>`.
 
-			// 3.1. If the loop encountered a tag end, stop:
+			// 2.1. If the loop encountered a tag end, stop:
 			if (content.type === PartType.TagEnd) {
 				break;
 			}
 
-			// 3.2. Otherwise convert the token to a string and append it to the buffer:
+			// 2.2. Otherwise convert the token to a string and append it to the buffer:
 			buffer += this.tokenToString(content);
 		}
 
-		// 4. Check if the buffer has enough characters:
+		// 3. Check if the buffer has enough characters:
 		if (buffer.length === 0) {
-			throw new ParserOptionMissingContentError();
+			throw new ParserEmptyStringTagError();
 		}
 
-		// 5. Validate fourth part: <TagEnd> |> `=[ ]option{content}`:
-		// 5.1. Push to Backtrack so TagEnd is available:
-		this.kBacktrackBuffer.push(content);
-
-		// 6. Return the key and value as a tuple:
-		return [name, buffer] as const;
+		return buffer;
 	}
 
 	/**

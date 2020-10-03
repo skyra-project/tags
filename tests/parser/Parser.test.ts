@@ -1,5 +1,16 @@
-import { Lexer, Parser, ParserMissingTokenError, ParserUnexpectedTokenError, Transformer } from '../../src';
-import { ParserOptionMissingContentError } from '../../src/lib/errors/ParserOptionMissingContentError';
+import {
+	Lexer,
+	Parser,
+	ParserMissingTokenError,
+	ParserUnexpectedTokenError,
+	Pick,
+	PickMapKey,
+	PickMapValue,
+	SentencePartType,
+	Tag,
+	Transformer
+} from '../../src';
+import { ParserEmptyStringTagError } from '../../src/lib/errors/ParserEmptyStringTagError';
 import { ParserPickMissingOptionsError } from '../../src/lib/errors/ParserPickMissingOptionsError';
 
 describe('Lexer', () => {
@@ -13,47 +24,84 @@ describe('Lexer', () => {
 
 	test('Basic Tag', () => {
 		const parser = new Parser(new Lexer('{number}'));
-		expect(() => parser.parse()).not.toThrow();
+
+		const pick = null;
+		const value = new Tag('', 'number', pick, []);
+		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Tag, value }]);
 	});
 
 	test('Basic Named Tag', () => {
 		const parser = new Parser(new Lexer('{name:number}'));
-		expect(() => parser.parse()).not.toThrow();
+
+		const pick = null;
+		const value = new Tag('name', 'number', pick, []);
+		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Tag, value }]);
 	});
 
 	test('Basic Pick Tag', () => {
 		const parser = new Parser(new Lexer('{pick =something{Hi!}}'));
-		expect(() => parser.parse()).not.toThrow();
+
+		const pick = new Pick(new Map([['something', 'Hi!']]));
+		const value = new Tag('', 'pick', pick, []);
+		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Tag, value }]);
 	});
 
 	test('Basic Pick Tag | Multiple Words', () => {
 		const parser = new Parser(new Lexer('{pick =something{Hello World!}}'));
-		expect(() => parser.parse()).not.toThrow();
+
+		const pick = new Pick(new Map([['something', 'Hello World!']]));
+		const value = new Tag('', 'pick', pick, []);
+		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Tag, value }]);
 	});
 
 	test('Basic Pick Tag With Fallback', () => {
 		const parser = new Parser(new Lexer('{pick =something{Hi!} ={Fallback!}}'));
-		expect(() => parser.parse()).not.toThrow();
+
+		const pick = new Pick(
+			new Map<PickMapKey, PickMapValue>([
+				['something', 'Hi!'],
+				[Pick.kFallback, 'Fallback!']
+			])
+		);
+		const value = new Tag('', 'pick', pick, []);
+		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Tag, value }]);
 	});
 
 	test('Basic Tag With Transformers', () => {
 		const parser = new Parser(new Lexer('{number | uppercase}'));
-		expect(() => parser.parse()).not.toThrow();
+
+		const pick = null;
+		const value = new Tag('', 'number', pick, [new Transformer('uppercase')]);
+		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Tag, value }]);
 	});
 
 	test('Basic Named Tag With Transformers', () => {
 		const parser = new Parser(new Lexer('{name:number | uppercase}'));
-		expect(() => parser.parse()).not.toThrow();
+
+		const pick = null;
+		const value = new Tag('name', 'number', pick, [new Transformer('uppercase')]);
+		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Tag, value }]);
 	});
 
 	test('Basic Pick Tag With Transformers', () => {
 		const parser = new Parser(new Lexer('{pick =something{Hi!} | uppercase}'));
-		expect(() => parser.parse()).not.toThrow();
+
+		const pick = new Pick(new Map([['something', 'Hi!']]));
+		const value = new Tag('', 'pick', pick, [new Transformer('uppercase')]);
+		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Tag, value }]);
 	});
 
 	test('Basic Pick Tag With Fallback & Transformers', () => {
 		const parser = new Parser(new Lexer('{pick =something{Hi!} ={Fallback!} | uppercase}'));
-		expect(() => parser.parse()).not.toThrow();
+
+		const pick = new Pick(
+			new Map<PickMapKey, PickMapValue>([
+				['something', 'Hi!'],
+				[Pick.kFallback, 'Fallback!']
+			])
+		);
+		const value = new Tag('', 'pick', pick, [new Transformer('uppercase')]);
+		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Tag, value }]);
 	});
 
 	test('Invalid | Tag | Expected Token', () => {
@@ -78,6 +126,6 @@ describe('Lexer', () => {
 
 	test('Invalid | Options | Missing Content', () => {
 		const parser = new Parser(new Lexer('{pick ={}}'));
-		expect(() => parser.parse()).toThrow(ParserOptionMissingContentError);
+		expect(() => parser.parse()).toThrow(ParserEmptyStringTagError);
 	});
 });
