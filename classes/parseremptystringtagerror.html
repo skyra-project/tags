@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PartPipe | @skyra/tags</title>
+	<title>ParserEmptyStringTagError | @skyra/tags</title>
 	<meta name="description" content="Documentation for @skyra/tags">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -52,28 +52,26 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="partpipe.html">PartPipe</a>
+					<a href="parseremptystringtagerror.html">ParserEmptyStringTagError</a>
 				</li>
 			</ul>
-			<h1>Interface PartPipe</h1>
+			<h1>Class ParserEmptyStringTagError</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Represents a pipe (<code>|</code>) token.</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">PartPipe</span>
+						<a href="parsermissingtokenerror.html#error" class="tsd-signature-type">Error</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">ParserEmptyStringTagError</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -84,7 +82,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="partpipe.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="parseremptystringtagerror.html#message" class="tsd-kind-icon">message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="parseremptystringtagerror.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="parseremptystringtagerror.html#stack" class="tsd-kind-icon">stack</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="parseremptystringtagerror.html#error" class="tsd-kind-icon">Error</a></li>
 							</ul>
 						</section>
 					</div>
@@ -92,13 +93,46 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../enums/parttype.html#pipe" class="tsd-signature-type">Pipe</a></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="message" class="tsd-anchor"></a>
+					<h3>message</h3>
+					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="parsermissingtokenerror.html">ParserMissingTokenError</a>.<a href="parsermissingtokenerror.html#message">message</a></p>
+						<ul>
+							<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:974</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="parsermissingtokenerror.html">ParserMissingTokenError</a>.<a href="parsermissingtokenerror.html#name">name</a></p>
+						<ul>
+							<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:973</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="stack" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> stack</h3>
+					<div class="tsd-signature tsd-kind-icon">stack<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="parsermissingtokenerror.html">ParserMissingTokenError</a>.<a href="parsermissingtokenerror.html#stack">stack</a></p>
+						<ul>
+							<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:975</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
+					<a name="error" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> Error</h3>
+					<div class="tsd-signature tsd-kind-icon">Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ErrorConstructor</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/595738f/src/lib/parser/Lexer.ts#L67">src/lib/parser/Lexer.ts:67</a></li>
+							<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:984</li>
 						</ul>
 					</aside>
 				</section>
@@ -121,88 +155,97 @@
 						<a href="../enums/sentenceparttype.html" class="tsd-kind-icon">Sentence<wbr>Part<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="../classes/characterstream.html" class="tsd-kind-icon">Character<wbr>Stream</a>
+						<a href="characterstream.html" class="tsd-kind-icon">Character<wbr>Stream</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="../classes/lexer.html" class="tsd-kind-icon">Lexer</a>
+						<a href="lexer.html" class="tsd-kind-icon">Lexer</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="../classes/parser.html" class="tsd-kind-icon">Parser</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/parseremptystringtagerror.html" class="tsd-kind-icon">Parser<wbr>Empty<wbr>String<wbr>Tag<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/parsermissingtokenerror.html" class="tsd-kind-icon">Parser<wbr>Missing<wbr>Token<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/parserpickmissingoptionserror.html" class="tsd-kind-icon">Parser<wbr>Pick<wbr>Missing<wbr>Options<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/parserunexpectedtokenerror.html" class="tsd-kind-icon">Parser<wbr>Unexpected<wbr>Token<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/pick.html" class="tsd-kind-icon">Pick</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/pickinvalidoptionerror.html" class="tsd-kind-icon">Pick<wbr>Invalid<wbr>Option<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/sentence.html" class="tsd-kind-icon">Sentence</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/sentencemissingargumenterror.html" class="tsd-kind-icon">Sentence<wbr>Missing<wbr>Argument<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/tag.html" class="tsd-kind-icon">Tag</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/transformer.html" class="tsd-kind-icon">Transformer</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/transformerinvalidformattererror.html" class="tsd-kind-icon">Transformer<wbr>Invalid<wbr>Formatter<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="iformatter.html" class="tsd-kind-icon">IFormatter</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="isentencepart.html" class="tsd-kind-icon">ISentence<wbr>Part</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="partcolon.html" class="tsd-kind-icon">Part<wbr>Colon</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="partequals.html" class="tsd-kind-icon">Part<wbr>Equals</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="partliteral.html" class="tsd-kind-icon">Part<wbr>Literal</a>
+						<a href="parser.html" class="tsd-kind-icon">Parser</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface">
-						<a href="partpipe.html" class="tsd-kind-icon">Part<wbr>Pipe</a>
+					<li class="current tsd-kind-class">
+						<a href="parseremptystringtagerror.html" class="tsd-kind-icon">Parser<wbr>Empty<wbr>String<wbr>Tag<wbr>Error</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="partpipe.html#type" class="tsd-kind-icon">type</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="parseremptystringtagerror.html#message" class="tsd-kind-icon">message</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="parseremptystringtagerror.html#name" class="tsd-kind-icon">name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="parseremptystringtagerror.html#stack" class="tsd-kind-icon">stack</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+								<a href="parseremptystringtagerror.html#error" class="tsd-kind-icon">Error</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface">
-						<a href="partspace.html" class="tsd-kind-icon">Part<wbr>Space</a>
+					<li class=" tsd-kind-class">
+						<a href="parsermissingtokenerror.html" class="tsd-kind-icon">Parser<wbr>Missing<wbr>Token<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="parserpickmissingoptionserror.html" class="tsd-kind-icon">Parser<wbr>Pick<wbr>Missing<wbr>Options<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="parserunexpectedtokenerror.html" class="tsd-kind-icon">Parser<wbr>Unexpected<wbr>Token<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="pick.html" class="tsd-kind-icon">Pick</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="pickinvalidoptionerror.html" class="tsd-kind-icon">Pick<wbr>Invalid<wbr>Option<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="sentence.html" class="tsd-kind-icon">Sentence</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="sentencemissingargumenterror.html" class="tsd-kind-icon">Sentence<wbr>Missing<wbr>Argument<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="tag.html" class="tsd-kind-icon">Tag</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="transformer.html" class="tsd-kind-icon">Transformer</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="transformerinvalidformattererror.html" class="tsd-kind-icon">Transformer<wbr>Invalid<wbr>Formatter<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="parttagend.html" class="tsd-kind-icon">Part<wbr>Tag<wbr>End</a>
+						<a href="../interfaces/iformatter.html" class="tsd-kind-icon">IFormatter</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="parttagstart.html" class="tsd-kind-icon">Part<wbr>Tag<wbr>Start</a>
+						<a href="../interfaces/isentencepart.html" class="tsd-kind-icon">ISentence<wbr>Part</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="sentencepartliteral.html" class="tsd-kind-icon">Sentence<wbr>Part<wbr>Literal</a>
+						<a href="../interfaces/partcolon.html" class="tsd-kind-icon">Part<wbr>Colon</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="sentenceparttag.html" class="tsd-kind-icon">Sentence<wbr>Part<wbr>Tag</a>
+						<a href="../interfaces/partequals.html" class="tsd-kind-icon">Part<wbr>Equals</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/partliteral.html" class="tsd-kind-icon">Part<wbr>Literal</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/partpipe.html" class="tsd-kind-icon">Part<wbr>Pipe</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/partspace.html" class="tsd-kind-icon">Part<wbr>Space</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/parttagend.html" class="tsd-kind-icon">Part<wbr>Tag<wbr>End</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/parttagstart.html" class="tsd-kind-icon">Part<wbr>Tag<wbr>Start</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/sentencepartliteral.html" class="tsd-kind-icon">Sentence<wbr>Part<wbr>Literal</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/sentenceparttag.html" class="tsd-kind-icon">Sentence<wbr>Part<wbr>Tag</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#part" class="tsd-kind-icon">Part</a>
