@@ -7,6 +7,7 @@
 	<meta name="description" content="Documentation for @skyra/tags">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
+	<script async src="../assets/js/search.js" id="search-script"></script>
 </head>
 <body>
 <header>
@@ -49,7 +50,7 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../globals.html">Globals</a>
+					<a href="../modules.html">@skyra/tags</a>
 				</li>
 				<li>
 					<a href="tag.html">Tag</a>
@@ -73,7 +74,7 @@
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="../interfaces/isentencepart.html" class="tsd-signature-type">ISentencePart</a></li>
+					<li><span class="tsd-signature-type">ISentencePart</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -89,7 +90,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="tag.html#kmodifier" class="tsd-kind-icon">k<wbr>Modifier</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="tag.html#kname" class="tsd-kind-icon">k<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="tag.html#ktransformers" class="tsd-kind-icon">k<wbr>Transformers</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="tag.html#ktype" class="tsd-kind-icon">k<wbr>Type</a></li>
 							</ul>
 						</section>
@@ -108,13 +111,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Tag<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, modifier<span class="tsd-signature-symbol">: </span><a href="pick.html" class="tsd-signature-type">Pick</a><span class="tsd-signature-symbol"> | </span><a href="random.html" class="tsd-signature-type">Random</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, transformers<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">readonly </span><a href="transformer.html" class="tsd-signature-type">Transformer</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="tag.html" class="tsd-signature-type">Tag</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Tag<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, modifier<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="pick.html" class="tsd-signature-type" data-tsd-kind="Class">Pick</a><span class="tsd-signature-symbol"> | </span><a href="random.html" class="tsd-signature-type" data-tsd-kind="Class">Random</a>, transformers<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">readonly </span><a href="transformer.html" class="tsd-signature-type" data-tsd-kind="Class">Transformer</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="tag.html" class="tsd-signature-type" data-tsd-kind="Class">Tag</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/skyra-project/tags/blob/78eb07b/src/lib/structures/Tag.ts#L10">src/lib/structures/Tag.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/skyra-project/tags/blob/0f0ffa5/src/lib/structures/Tag.ts#L10">lib/structures/Tag.ts:10</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -126,36 +129,56 @@
 									<h5>type: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>modifier: <a href="pick.html" class="tsd-signature-type">Pick</a><span class="tsd-signature-symbol"> | </span><a href="random.html" class="tsd-signature-type">Random</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+									<h5>modifier: <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="pick.html" class="tsd-signature-type" data-tsd-kind="Class">Pick</a><span class="tsd-signature-symbol"> | </span><a href="random.html" class="tsd-signature-type" data-tsd-kind="Class">Random</a></h5>
 								</li>
 								<li>
-									<h5>transformers: <span class="tsd-signature-symbol">readonly </span><a href="transformer.html" class="tsd-signature-type">Transformer</a><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>transformers: <span class="tsd-signature-symbol">readonly </span><a href="transformer.html" class="tsd-signature-type" data-tsd-kind="Class">Transformer</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="tag.html" class="tsd-signature-type">Tag</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="tag.html" class="tsd-signature-type" data-tsd-kind="Class">Tag</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="kmodifier" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> k<wbr>Modifier</h3>
+					<div class="tsd-signature tsd-kind-icon">k<wbr>Modifier<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="pick.html" class="tsd-signature-type" data-tsd-kind="Class">Pick</a><span class="tsd-signature-symbol"> | </span><a href="random.html" class="tsd-signature-type" data-tsd-kind="Class">Random</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/0f0ffa5/src/lib/structures/Tag.ts#L9">lib/structures/Tag.ts:9</a></li>
+						</ul>
+					</aside>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="kname" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> k<wbr>Name</h3>
-					<div class="tsd-signature tsd-kind-icon">k<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<div class="tsd-signature tsd-kind-icon">k<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/78eb07b/src/lib/structures/Tag.ts#L7">src/lib/structures/Tag.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/0f0ffa5/src/lib/structures/Tag.ts#L7">lib/structures/Tag.ts:7</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="ktransformers" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> k<wbr>Transformers</h3>
+					<div class="tsd-signature tsd-kind-icon">k<wbr>Transformers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">readonly </span><a href="transformer.html" class="tsd-signature-type" data-tsd-kind="Class">Transformer</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/0f0ffa5/src/lib/structures/Tag.ts#L10">lib/structures/Tag.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="ktype" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> k<wbr>Type</h3>
-					<div class="tsd-signature tsd-kind-icon">k<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<div class="tsd-signature tsd-kind-icon">k<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/78eb07b/src/lib/structures/Tag.ts#L8">src/lib/structures/Tag.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/0f0ffa5/src/lib/structures/Tag.ts#L8">lib/structures/Tag.ts:8</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -171,9 +194,8 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/isentencepart.html">ISentencePart</a>.<a href="../interfaces/isentencepart.html#run">run</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/skyra-project/tags/blob/78eb07b/src/lib/structures/Tag.ts#L19">src/lib/structures/Tag.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/skyra-project/tags/blob/0f0ffa5/src/lib/structures/Tag.ts#L19">lib/structures/Tag.ts:19</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -191,13 +213,58 @@
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
-						<a href="../globals.html"><em>Globals</em></a>
+					<li class=" ">
+						<a href="../modules.html">Exports</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="../enums/parttype.html" class="tsd-kind-icon">Part<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="../enums/sentenceparttype.html" class="tsd-kind-icon">Sentence<wbr>Part<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="lexer.html" class="tsd-kind-icon">Lexer</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="parser.html" class="tsd-kind-icon">Parser</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="parseremptystringtagerror.html" class="tsd-kind-icon">Parser<wbr>Empty<wbr>String<wbr>Tag<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="parsermissingtokenerror.html" class="tsd-kind-icon">Parser<wbr>Missing<wbr>Token<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="parserpickmissingoptionserror.html" class="tsd-kind-icon">Parser<wbr>Pick<wbr>Missing<wbr>Options<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="parserrandomduplicatedoptionserror.html" class="tsd-kind-icon">Parser<wbr>Random<wbr>Duplicated<wbr>Options<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="parserrandommissingoptionserror.html" class="tsd-kind-icon">Parser<wbr>Random<wbr>Missing<wbr>Options<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="parserunexpectedtokenerror.html" class="tsd-kind-icon">Parser<wbr>Unexpected<wbr>Token<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="pick.html" class="tsd-kind-icon">Pick</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="pickinvalidoptionerror.html" class="tsd-kind-icon">Pick<wbr>Invalid<wbr>Option<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="random.html" class="tsd-kind-icon">Random</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="sentence.html" class="tsd-kind-icon">Sentence</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="sentencemissingargumenterror.html" class="tsd-kind-icon">Sentence<wbr>Missing<wbr>Argument<wbr>Error</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
@@ -206,8 +273,14 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="tag.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="tag.html#kmodifier" class="tsd-kind-icon">k<wbr>Modifier</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="tag.html#kname" class="tsd-kind-icon">k<wbr>Name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="tag.html#ktransformers" class="tsd-kind-icon">k<wbr>Transformers</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="tag.html#ktype" class="tsd-kind-icon">k<wbr>Type</a>
@@ -219,6 +292,63 @@
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-class">
+						<a href="transformer.html" class="tsd-kind-icon">Transformer</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="transformerinvalidformattererror.html" class="tsd-kind-icon">Transformer<wbr>Invalid<wbr>Formatter<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/iformatter.html" class="tsd-kind-icon">IFormatter</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/partcolon.html" class="tsd-kind-icon">Part<wbr>Colon</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/partequals.html" class="tsd-kind-icon">Part<wbr>Equals</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/partliteral.html" class="tsd-kind-icon">Part<wbr>Literal</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/partpipe.html" class="tsd-kind-icon">Part<wbr>Pipe</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/partspace.html" class="tsd-kind-icon">Part<wbr>Space</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/parttagend.html" class="tsd-kind-icon">Part<wbr>Tag<wbr>End</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/parttagstart.html" class="tsd-kind-icon">Part<wbr>Tag<wbr>Start</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/sentencepartliteral.html" class="tsd-kind-icon">Sentence<wbr>Part<wbr>Literal</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/sentenceparttag.html" class="tsd-kind-icon">Sentence<wbr>Part<wbr>Tag</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../modules.html#part" class="tsd-kind-icon">Part</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../modules.html#partiterator" class="tsd-kind-icon">Part<wbr>Iterator</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../modules.html#pickdata" class="tsd-kind-icon">Pick<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../modules.html#pickmapkey" class="tsd-kind-icon">Pick<wbr>Map<wbr>Key</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../modules.html#pickmapvalue" class="tsd-kind-icon">Pick<wbr>Map<wbr>Value</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../modules.html#readonlypart" class="tsd-kind-icon">Readonly<wbr>Part</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../modules.html#sentencepart" class="tsd-kind-icon">Sentence<wbr>Part</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -234,11 +364,11 @@
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
