@@ -1,5 +1,6 @@
 import {
 	Lexer,
+	MismatchingNamedArgumentTypeValidationError,
 	Parser,
 	ParserEmptyStringTagError,
 	ParserMissingTokenError,
@@ -22,14 +23,14 @@ describe('Parser', () => {
 	test('Basic Parser | Lexer Overload', () => {
 		const lexer = new Lexer('');
 		const parser = new Parser(lexer);
-		expect(parser.kParts).not.toBe(lexer);
+		expect(parser.input).not.toBe(lexer);
 	});
 
 	test('Basic Parser | Iterator Overload', () => {
 		const lexer = new Lexer('');
 		const iterator = lexer[Symbol.iterator]();
 		const parser = new Parser(iterator);
-		expect(parser.kParts).toBe(iterator);
+		expect(parser.input).toBe(iterator);
 	});
 
 	test('Basic Literal', () => {
@@ -105,7 +106,7 @@ describe('Parser', () => {
 		const modifier = new Pick(
 			new Map<PickMapKey, PickMapValue>([
 				['something', 'Hi!'],
-				[Pick.kFallback, 'Fallback!']
+				[Pick.fallback, 'Fallback!']
 			])
 		);
 		const value = new Tag('', 'pick', modifier, []);
@@ -150,7 +151,7 @@ describe('Parser', () => {
 		const modifier = new Pick(
 			new Map<PickMapKey, PickMapValue>([
 				['something', 'Hi!'],
-				[Pick.kFallback, 'Fallback!']
+				[Pick.fallback, 'Fallback!']
 			])
 		);
 		const value = new Tag('', 'pick', modifier, [new Transformer('uppercase')]);
@@ -163,6 +164,32 @@ describe('Parser', () => {
 		const modifier = new Random(['Hey', 'Hello there']);
 		const value = new Tag('', 'random', modifier, [new Transformer('uppercase')]);
 		expect(parser.parse()).toStrictEqual([{ type: SentencePartType.Tag, value }]);
+	});
+
+	test('Basic Tag Check', () => {
+		const parser = new Parser(new Lexer('{string} {string}'));
+
+		const modifier = null;
+		const values = [
+			{ type: SentencePartType.Tag, value: new Tag('', 'string', modifier, []) },
+			{ type: SentencePartType.Literal, value: ' ' },
+			{ type: SentencePartType.Tag, value: new Tag('', 'string', modifier, []) }
+		] as const;
+		expect(parser.parse()).toStrictEqual(values);
+		expect(() => parser.check()).not.toThrow();
+	});
+
+	test('Basic Named Tag Check', () => {
+		const parser = new Parser(new Lexer('{a:string} {a:string}'));
+
+		const modifier = null;
+		const values = [
+			{ type: SentencePartType.Tag, value: new Tag('a', 'string', modifier, []) },
+			{ type: SentencePartType.Literal, value: ' ' },
+			{ type: SentencePartType.Tag, value: new Tag('a', 'string', modifier, []) }
+		] as const;
+		expect(parser.parse()).toStrictEqual(values);
+		expect(() => parser.check()).not.toThrow();
 	});
 
 	test('Invalid | Tag | Expected Token (Literal)', () => {
@@ -228,5 +255,18 @@ describe('Parser', () => {
 	test('Invalid | Random | Duplicated Items (2 items)', () => {
 		const parser = new Parser(new Lexer('{random {hey} {hey}}'));
 		expect(() => parser.parse()).toThrow(ParserRandomDuplicatedOptionsError);
+	});
+
+	test('Invalid | Check | Mismatching Types (Expected string, Received number)', () => {
+		const parser = new Parser(new Lexer('{a:number} {a:string}'));
+
+		const modifier = null;
+		const values = [
+			{ type: SentencePartType.Tag, value: new Tag('a', 'number', modifier, []) },
+			{ type: SentencePartType.Literal, value: ' ' },
+			{ type: SentencePartType.Tag, value: new Tag('a', 'string', modifier, []) }
+		] as const;
+		expect(parser.parse()).toStrictEqual(values);
+		expect(() => parser.check()).toThrow(MismatchingNamedArgumentTypeValidationError);
 	});
 });

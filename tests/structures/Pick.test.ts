@@ -14,7 +14,7 @@ describe('Pick', () => {
 	test('Fallback Option', () => {
 		const map = new Map<PickMapKey, PickMapValue>([
 			['foo', 'bar'],
-			[Pick.kFallback, 'woo!']
+			[Pick.fallback, 'woo!']
 		]);
 		const pick = new Pick(map);
 		expect(pick.run('invalid')).toBe('woo!');

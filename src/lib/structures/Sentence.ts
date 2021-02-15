@@ -7,20 +7,20 @@ export const enum SentencePartType {
 }
 
 export class Sentence {
-	private readonly kParts: readonly SentencePart[] = [];
+	private readonly parts: readonly SentencePart[] = [];
 
 	public constructor(parts: readonly SentencePart[]) {
-		this.kParts = parts;
+		this.parts = parts;
 	}
 
 	public *[Symbol.iterator](): Iterator<Tag, string, string> {
 		let output = '';
 		const resolved = new Map<string, string>();
-		for (const part of this.kParts) {
+		for (const part of this.parts) {
 			if (part.type === SentencePartType.Literal) {
 				output += part.value;
 			} else {
-				const name = part.value.kName;
+				const { name } = part.value;
 				let value = name ? resolved.get(name) : null;
 				if (!value) {
 					value = yield part.value;
@@ -32,6 +32,10 @@ export class Sentence {
 		}
 
 		return output;
+	}
+
+	public toString(): string {
+		return this.parts.map((part) => (part.type === SentencePartType.Literal ? part.value : part.value.toString())).join('');
 	}
 }
 

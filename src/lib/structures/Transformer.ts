@@ -1,8 +1,9 @@
 import { TransformerInvalidFormatterError } from '../errors/TransformerInvalidFormatterError';
+import { Unreachable } from '../errors/Unreachable';
 import type { ISentencePart } from './ISentencePart';
 
 export class Transformer implements ISentencePart {
-	private readonly kRun: IFormatter;
+	public readonly name: string;
 
 	public constructor(name: string) {
 		const formatter = Transformer.kFormatters.get(name);
@@ -10,11 +11,17 @@ export class Transformer implements ISentencePart {
 			throw new TransformerInvalidFormatterError(this, name);
 		}
 
-		this.kRun = formatter;
+		this.name = name;
+		this.run = formatter;
 	}
 
-	public run(value: string): string {
-		return this.kRun(value);
+	public run(value: string): string;
+	public run(): string {
+		throw new Unreachable();
+	}
+
+	public toString(): string {
+		return this.name;
 	}
 
 	public static readonly kFormatters = new Map<string, IFormatter>();
