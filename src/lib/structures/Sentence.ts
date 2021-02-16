@@ -9,7 +9,7 @@ export const enum SentencePartType {
 }
 
 export class Sentence {
-	private readonly parts: readonly SentencePart[] = [];
+	public readonly parts: readonly SentencePart[] = [];
 
 	public constructor(parts: readonly SentencePart[]) {
 		this.parts = parts;
