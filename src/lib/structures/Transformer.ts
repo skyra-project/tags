@@ -6,7 +6,7 @@ export class Transformer implements ISentencePart {
 	public readonly name: string;
 
 	public constructor(name: string) {
-		const formatter = Transformer.kFormatters.get(name);
+		const formatter = Transformer.formatters.get(name);
 		if (typeof formatter === 'undefined') {
 			throw new TransformerInvalidFormatterError(this, name);
 		}
@@ -24,7 +24,10 @@ export class Transformer implements ISentencePart {
 		return this.name;
 	}
 
-	public static readonly kFormatters = new Map<string, IFormatter>();
+	public static readonly formatters = new Map<string, IFormatter>([
+		['uppercase', (value) => value.toUpperCase()],
+		['lowercase', (value) => value.toLowerCase()]
+	]);
 }
 
 export interface IFormatter {

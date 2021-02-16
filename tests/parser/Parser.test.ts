@@ -18,7 +18,7 @@ import {
 } from '../../src';
 
 describe('Parser', () => {
-	Transformer.kFormatters.set('uppercase', (value) => value.toUpperCase());
+	Transformer.formatters.set('uppercase', (value) => value.toUpperCase());
 
 	test('Basic Parser | Lexer Overload', () => {
 		const lexer = new Lexer('');

@@ -1,8 +1,6 @@
 import { Transformer, TransformerInvalidFormatterError } from '../../src';
 
 describe('Transformer', () => {
-	Transformer.kFormatters.set('uppercase', (value) => value.toUpperCase());
-
 	test('Invalid Formatter', () => {
 		expect(() => new Transformer('invalid')).toThrow(TransformerInvalidFormatterError);
 	});
@@ -13,5 +11,9 @@ describe('Transformer', () => {
 
 	test('Run Formatter', () => {
 		expect(new Transformer('uppercase').run('hello world!')).toBe('HELLO WORLD!');
+	});
+
+	test('toString | Valid Formatter', () => {
+		expect(new Transformer('uppercase').toString()).toBe('uppercase');
 	});
 });

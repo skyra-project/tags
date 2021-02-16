@@ -13,7 +13,7 @@ export class Sentence {
 		this.parts = parts;
 	}
 
-	public *[Symbol.iterator](): Iterator<Tag, string, string> {
+	public *run(): Iterator<Tag, string, string> {
 		let output = '';
 		const resolved = new Map<string, string>();
 		for (const part of this.parts) {
