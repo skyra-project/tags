@@ -90,4 +90,22 @@ describe('Sentence', () => {
 
 		expect(sentence.toString()).toBe('Hello {name:string | uppercase}!');
 	});
+
+	test('from + toString | Literal Only', () => {
+		const content = 'Hello!';
+		const sentence = Sentence.from(content);
+		expect(sentence.toString()).toBe(content);
+	});
+
+	test('from + toString | Tag Only', () => {
+		const content = '{name:string | uppercase}';
+		const sentence = Sentence.from(content);
+		expect(sentence.toString()).toBe(content);
+	});
+
+	test('from + toString | Literal with Tags', () => {
+		const content = 'Hello {name:string | uppercase}!';
+		const sentence = Sentence.from(content);
+		expect(sentence.toString()).toBe(content);
+	});
 });
