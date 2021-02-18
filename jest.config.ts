@@ -1,4 +1,7 @@
-module.exports = {
+import type { Config } from '@jest/types';
+
+// eslint-disable-next-line @typescript-eslint/require-await
+export default async (): Promise<Config.InitialOptions> => ({
 	coverageProvider: 'v8',
 	displayName: 'unit test',
 	preset: 'ts-jest',
@@ -10,4 +13,4 @@ module.exports = {
 			tsconfig: '<rootDir>/tests/tsconfig.json'
 		}
 	}
-};
+});
