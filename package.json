@@ -1,6 +1,6 @@
 {
 	"name": "@skyra/tags",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "An advanced tags system for custom commands",
 	"main": "dist/index.js",
 	"module": "dist/index.es.js",
