@@ -56,21 +56,26 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<a href="#skyratags" id="skyratags" style="color: inherit; text-decoration: none;">
-					<h1>@skyra/tags</h1>
-				</a>
-				<p><a href="https://github.com/skyra-project/tags/blob/main/LICENSE.md"><img src="https://img.shields.io/github/license/skyra-project/tags" alt="GitHub"></a>
-					<a href="https://lgtm.com/projects/g/skyra-project/tags/alerts/"><img src="https://img.shields.io/lgtm/alerts/g/skyra-project/tags.svg?logo=lgtm&logoWidth=18" alt="Total alerts"></a>
-					<a href="https://lgtm.com/projects/g/skyra-project/tags/context:javascript"><img src="https://img.shields.io/lgtm/grade/javascript/g/skyra-project/tags.svg?logo=lgtm&logoWidth=18" alt="Language grade: JavaScript"></a>
-					<a href="https://coveralls.io/github/skyra-project/tags?branch=main"><img src="https://coveralls.io/repos/github/skyra-project/tags/badge.svg?branch=main" alt="Coverage Status"></a>
-				<a href="https://depfu.com/github/skyra-project/tags?project_id=16849"><img src="https://badges.depfu.com/badges/bf9d66331db86da298b9ef3d47543270/count.svg" alt="Depfu"></a></p>
-				<p><a href="https://www.npmjs.com/package/@skyra/tags"><img src="https://img.shields.io/npm/v/@skyra/tags?color=crimson&label=NPM&logo=npm&style=flat-square" alt="npm"></a>
-					<img src="https://img.shields.io/bundlephobia/min/@skyra/tags?label=minified&logo=webpack" alt="npm bundle size minified (scoped)">
-				<img src="https://img.shields.io/bundlephobia/minzip/@skyra/tags?label=minified&logo=webpack" alt="npm bundle size minzipped (scoped)"></p>
+				<div align="center">
+					<a href="#skyratags" id="skyratags" style="color: inherit; text-decoration: none;">
+						<h1>@skyra/tags</h1>
+					</a>
+					<p><strong>An advanced tags system for custom commands</strong></p>
+					<p><a href="https://github.com/skyra-project/tags/blob/main/LICENSE.md"><img src="https://img.shields.io/github/license/skyra-project/tags" alt="GitHub"></a>
+						<a href="https://lgtm.com/projects/g/skyra-project/tags/alerts/"><img src="https://img.shields.io/lgtm/alerts/g/skyra-project/tags.svg?logo=lgtm&logoWidth=18" alt="Total alerts"></a>
+						<a href="https://lgtm.com/projects/g/skyra-project/tags/context:javascript"><img src="https://img.shields.io/lgtm/grade/javascript/g/skyra-project/tags.svg?logo=lgtm&logoWidth=18" alt="Language grade: JavaScript"></a>
+						<a href="https://coveralls.io/github/skyra-project/tags?branch=main"><img src="https://coveralls.io/repos/github/skyra-project/tags/badge.svg?branch=main" alt="Coverage Status"></a>
+					<a href="https://depfu.com/github/skyra-project/tags?project_id=16849"><img src="https://badges.depfu.com/badges/bf9d66331db86da298b9ef3d47543270/count.svg" alt="Depfu"></a></p>
+					<p><a href="https://www.npmjs.com/package/@skyra/tags"><img src="https://img.shields.io/npm/v/@skyra/tags?color=crimson&label=NPM&logo=npm&style=flat-square" alt="npm"></a>
+						<img src="https://img.shields.io/bundlephobia/min/@skyra/tags?label=minified&logo=webpack" alt="npm bundle size minified (scoped)">
+					<img src="https://img.shields.io/bundlephobia/minzip/@skyra/tags?label=minified&logo=webpack" alt="npm bundle size minzipped (scoped)"></p>
+				</div>
+				<hr>
 				<p><strong>Table of Contents</strong></p>
 				<ul>
 					<li><a href="#skyratags">@skyra/tags</a><ul>
-							<li>  <a href="#about">About</a></li>
+							<li>  <a href="#description">Description</a></li>
+							<li>  <a href="#features">Features</a></li>
 							<li><a href="#installation-and-usage">Installation and Usage</a><ul>
 									<li><a href="#package-managers">Package managers</a><ul>
 											<li>  <a href="#usage">Usage</a></li>
@@ -82,20 +87,21 @@
 									</li>
 								</ul>
 							</li>
-							<li><a href="#meta">Meta</a><ul>
-									<li>  <a href="#license">License</a></li>
-									<li>  <a href="#contributing">Contributing</a></li>
-									<li>  <a href="#buy-us-some-doughnuts">Buy us some doughnuts</a></li>
-									<li>  <a href="#contributors-%E2%9C%A8">Contributors ✨</a></li>
-								</ul>
-							</li>
+							<li>  <a href="#api-documentation">API Documentation</a></li>
+							<li>  <a href="#buy-us-some-doughnuts">Buy us some doughnuts</a></li>
+							<li>  <a href="#contributors-%E2%9C%A8">Contributors ✨</a></li>
 						</ul>
 					</li>
 				</ul>
-				<a href="#about" id="about" style="color: inherit; text-decoration: none;">
-					<h2>About</h2>
+				<a href="#description" id="description" style="color: inherit; text-decoration: none;">
+					<h2>Description</h2>
+				</a>
+				<p>Advanced custom commmands system for <a href="https://github.com/skyra-project/skyra">Skyra</a> discord bot.</p>
+				<a href="#features" id="features" style="color: inherit; text-decoration: none;">
+					<h2>Features</h2>
 				</a>
 				<ul>
+					<li>  Written in TypeScript.</li>
 					<li>  @skyra/tags is an advanced tags system for custom commands supporting UTF-16 and a Lexer with <code>O(n)</code> time complexity.</li>
 					<li>  Supports both NodeJS and Browsers by providing CommonJS, ES Module and UMD bundles.</li>
 				</ul>
@@ -129,26 +135,12 @@
 <span style="color: #000000FF">    </span><span style="color: #001080">SkyraTags</span><span style="color: #000000FF">.</span><span style="color: #795E26">parse</span><span style="color: #000000FF">(</span><span style="color: #A31515">&#039;Hello {{user}}!&#039;</span><span style="color: #000000FF">);</span>
 <span style="color: #800000">&lt;/script&gt;</span>
 </code></pre>
-				<a href="#meta" id="meta" style="color: inherit; text-decoration: none;">
-					<h2>Meta</h2>
+				<a href="#api-documentation" id="api-documentation" style="color: inherit; text-decoration: none;">
+					<h2>API Documentation</h2>
 				</a>
-				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
-					<h3>License</h3>
-				</a>
-				<p>Copyright © 2020, <a href="https://github.com/skyra-project">Skyra Project</a>.
-				Released under the <a href="LICENSE.md">MIT License</a>.</p>
-				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
-					<h3>Contributing</h3>
-				</a>
-				<ol>
-					<li>Fork it!</li>
-					<li>Create your feature branch: <code>git checkout -b my-new-feature</code></li>
-					<li>Commit your changes: <code>git commit -am &#39;Add some feature&#39;</code></li>
-					<li>Push to the branch: <code>git push origin my-new-feature</code></li>
-					<li>Submit a pull request!</li>
-				</ol>
+				<p>For the full API documentation please refer to the TypeDoc generated <a href="https://sapphire-project.github.io/framework">documentation</a>.</p>
 				<a href="#buy-us-some-doughnuts" id="buy-us-some-doughnuts" style="color: inherit; text-decoration: none;">
-					<h3>Buy us some doughnuts</h3>
+					<h2>Buy us some doughnuts</h2>
 				</a>
 				<p>Skyra Project is open source and always will be, even if we don&#39;t get donations. That said, we know there are amazing people who
 				may still want to donate just to show their appreciation. Thanks you very much in advance!</p>
@@ -164,12 +156,12 @@
 					<tbody><tr>
 							<td align="center">Patreon</td>
 							<td align="center"><img src="https://cdn.skyra.pw/gh-assets/patreon.png" alt="PatreonImage"></td>
-							<td align="center"><a href="https://www.patreon.com/kyranet">Click Here</a></td>
+							<td align="center"><a href="https://donate.skyra.pw/patreon">Click Here</a></td>
 						</tr>
 						<tr>
 							<td align="center">PayPal</td>
 							<td align="center"><img src="https://cdn.skyra.pw/gh-assets/paypal.png" alt="PayPalImage"></td>
-							<td align="center"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=CET28NRZTDQ8L">Click Here</a></td>
+							<td align="center"><a href="https://donate.skyra.pw/paypal">Click Here</a></td>
 						</tr>
 						<tr>
 							<td align="center">BitCoin</td>
@@ -188,7 +180,7 @@
 						</tr>
 				</tbody></table>
 				<a href="#contributors-✨" id="contributors-✨" style="color: inherit; text-decoration: none;">
-					<h3>Contributors ✨</h3>
+					<h2>Contributors ✨</h2>
 				</a>
 				<p>Thanks goes to these wonderful people (<a href="https://allcontributors.org/docs/en/emoji-key">emoji key</a>):</p>
 				<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
@@ -197,9 +189,11 @@
 				<table>
 					<tr>
 						<td align="center"><a href="https://github.com/kyranet"><img src="https://avatars0.githubusercontent.com/u/24852502?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Antonio Román</b></sub></a><br /><a href="https://github.com/skyra-project/tags/commits?author=kyranet" title="Code">💻</a> <a href="https://github.com/skyra-project/tags/commits?author=kyranet" title="Tests">⚠️</a> <a href="#ideas-kyranet" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-kyranet" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+						<td align="center"><a href="https://favware.tech/"><img src="https://avatars.githubusercontent.com/u/4019718?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jeroen Claassens</b></sub></a><br /><a href="#infra-Favna" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+						<td align="center"><a href="https://github.com/apps/depfu"><img src="https://avatars.githubusercontent.com/in/715?v=4?s=100" width="100px;" alt=""/><br /><sub><b>depfu[bot]</b></sub></a><br /><a href="#maintenance-depfu[bot]" title="Maintenance">🚧</a></td>
 					</tr>
 				</table>
-				<!-- markdownlint-enable -->
+				<!-- markdownlint-restore -->
 				<!-- prettier-ignore-end -->
 				<!-- ALL-CONTRIBUTORS-LIST:END -->
 				<p>This project follows the <a href="https://github.com/all-contributors/all-contributors">all-contributors</a> specification. Contributions of any kind welcome!</p>
