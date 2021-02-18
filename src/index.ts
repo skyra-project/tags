@@ -16,3 +16,4 @@ export * from './lib/structures/Random';
 export * from './lib/structures/Sentence';
 export * from './lib/structures/Tag';
 export * from './lib/structures/Transformer';
+export * from './lib/util/util';
