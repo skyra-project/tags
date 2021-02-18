@@ -1,23 +1,33 @@
 import { TransformerInvalidFormatterError } from '../errors/TransformerInvalidFormatterError';
+import { Unreachable } from '../errors/Unreachable';
 import type { ISentencePart } from './ISentencePart';
 
 export class Transformer implements ISentencePart {
-	private readonly kRun: IFormatter;
+	public readonly name: string;
 
 	public constructor(name: string) {
-		const formatter = Transformer.kFormatters.get(name);
+		const formatter = Transformer.formatters.get(name);
 		if (typeof formatter === 'undefined') {
 			throw new TransformerInvalidFormatterError(this, name);
 		}
 
-		this.kRun = formatter;
+		this.name = name;
+		this.run = formatter;
 	}
 
-	public run(value: string): string {
-		return this.kRun(value);
+	public run(value: string): string;
+	public run(): string {
+		throw new Unreachable();
 	}
 
-	public static readonly kFormatters = new Map<string, IFormatter>();
+	public toString(): string {
+		return this.name;
+	}
+
+	public static readonly formatters = new Map<string, IFormatter>([
+		['uppercase', (value) => value.toUpperCase()],
+		['lowercase', (value) => value.toLowerCase()]
+	]);
 }
 
 export interface IFormatter {

@@ -1,13 +1,13 @@
 import { PartType } from '../parser/Lexer';
 
 export class ParserUnexpectedTokenError extends SyntaxError {
-	public readonly kExpected: PartType | readonly PartType[];
-	public readonly kReceived: PartType;
+	public readonly expected: PartType | readonly PartType[];
+	public readonly received: PartType;
 
 	public constructor(expected: PartType | PartType[], received: PartType) {
 		super(`Expected ${ParserUnexpectedTokenError.getTypeName(expected)}, received ${ParserUnexpectedTokenError.getTypeName(received)}`);
-		this.kExpected = expected;
-		this.kReceived = received;
+		this.expected = expected;
+		this.received = received;
 	}
 
 	private static getTypeName(type: PartType | PartType[]): string {

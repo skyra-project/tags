@@ -14,9 +14,24 @@ describe('Pick', () => {
 	test('Fallback Option', () => {
 		const map = new Map<PickMapKey, PickMapValue>([
 			['foo', 'bar'],
-			[Pick.kFallback, 'woo!']
+			[Pick.fallback, 'woo!']
 		]);
 		const pick = new Pick(map);
 		expect(pick.run('invalid')).toBe('woo!');
+	});
+
+	test('toString | Valid Option', () => {
+		const map = new Map<PickMapKey, PickMapValue>([['foo', 'bar']]);
+		const pick = new Pick(map);
+		expect(pick.toString()).toBe('pick =foo{bar}');
+	});
+
+	test('toString | Fallback Option', () => {
+		const map = new Map<PickMapKey, PickMapValue>([
+			['foo', 'bar'],
+			[Pick.fallback, 'woo!']
+		]);
+		const pick = new Pick(map);
+		expect(pick.toString()).toBe('pick =foo{bar} ={woo!}');
 	});
 });

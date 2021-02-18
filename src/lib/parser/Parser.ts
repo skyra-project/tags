@@ -1,3 +1,4 @@
+import { MismatchingNamedArgumentTypeValidationError } from '../errors/MismatchingNamedArgumentTypeValidationError';
 import { ParserEmptyStringTagError } from '../errors/ParserEmptyStringTagError';
 import { ParserMissingTokenError } from '../errors/ParserMissingTokenError';
 import { ParserPickMissingOptionsError } from '../errors/ParserPickMissingOptionsError';
@@ -12,40 +13,62 @@ import { Transformer } from '../structures/Transformer';
 import { Lexer, PartIterator, PartType, ReadonlyPart } from './Lexer';
 
 export class Parser {
-	public readonly kParts: PartIterator;
-	private readonly kBacktrackBuffer: ReadonlyPart[] = [];
+	public readonly tags: Tag[] = [];
+	public readonly parts: SentencePart[] = [];
+	public readonly input: PartIterator;
+	private readonly backtrackBuffer: ReadonlyPart[] = [];
 
 	public constructor(parts: Lexer | PartIterator) {
-		this.kParts = parts instanceof Lexer ? parts[Symbol.iterator]() : parts;
+		this.input = parts instanceof Lexer ? parts[Symbol.iterator]() : parts;
 	}
 
 	public parse() {
 		let buffer = '';
-		const parts: SentencePart[] = [];
-		for (const part of this.kParts) {
+		for (const part of this.input) {
 			if (part.type === PartType.TagStart) {
 				if (buffer.length > 0) {
-					parts.push({ type: SentencePartType.Literal, value: buffer });
+					this.parts.push({ type: SentencePartType.Literal, value: buffer });
 					buffer = '';
 				}
 
-				parts.push({ type: SentencePartType.Tag, value: this.parseTag() });
+				const tag = this.parseTag();
+				this.tags.push(tag);
+				this.parts.push({ type: SentencePartType.Tag, value: tag });
 			} else {
 				buffer += this.tokenToString(part);
 			}
 		}
 
 		if (buffer.length > 0) {
-			parts.push({ type: SentencePartType.Literal, value: buffer });
+			this.parts.push({ type: SentencePartType.Literal, value: buffer });
 		}
 
-		return parts;
+		return this.parts;
+	}
+
+	public check() {
+		if (this.tags.length === 0) return;
+
+		const entries = new Map<string, Tag>();
+		for (const tag of this.tags) {
+			if (tag.name === null) continue;
+
+			const entry = entries.get(tag.name);
+			if (typeof entry === 'undefined') {
+				entries.set(tag.name, tag);
+				continue;
+			}
+
+			if (entry.type !== tag.type) {
+				throw new MismatchingNamedArgumentTypeValidationError(tag, entry);
+			}
+		}
 	}
 
 	private next() {
-		if (this.kBacktrackBuffer.length) return this.kBacktrackBuffer.pop()!;
+		if (this.backtrackBuffer.length) return this.backtrackBuffer.pop()!;
 
-		const result = this.kParts.next();
+		const result = this.input.next();
 		if (result.done) throw new ParserMissingTokenError();
 
 		return result.value;
@@ -127,7 +150,7 @@ export class Parser {
 
 			// 1. If a tag end or a pipe has been encountered, add the part to the backtrack buffer and break:
 			if (part.type === PartType.TagEnd || part.type === PartType.Pipe) {
-				this.kBacktrackBuffer.push(part);
+				this.backtrackBuffer.push(part);
 				break;
 			}
 
@@ -155,7 +178,7 @@ export class Parser {
 
 			// 1. If a tag end or a pipe has been encountered, add the part to the backtrack buffer and break:
 			if (part.type === PartType.TagEnd || part.type === PartType.Pipe) {
-				this.kBacktrackBuffer.push(part);
+				this.backtrackBuffer.push(part);
 				break;
 			}
 
@@ -201,7 +224,7 @@ export class Parser {
 	private parseOptionTokens(): readonly [PickMapKey, string] {
 		const part = this.nextExcluding(PartType.Space);
 
-		let name: PickMapKey = Pick.kFallback;
+		let name: PickMapKey = Pick.fallback;
 
 		// 1. Overloaded, two options:
 		// -> 1.1. `=[ ]option{`.
