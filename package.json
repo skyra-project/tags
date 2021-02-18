@@ -1,18 +1,19 @@
 {
 	"name": "@skyra/tags",
 	"version": "0.0.1",
-	"description": "An advanced tags system for custom commands.",
-	"author": "@skyra",
-	"license": "MIT",
+	"description": "An advanced tags system for custom commands",
 	"main": "dist/index.js",
 	"module": "dist/index.es.js",
 	"browser": "dist/index.umd.js",
 	"unpkg": "dist/index.umd.js",
 	"types": "dist/index.d.ts",
-	"homepage": "https://skyra-project.github.io/tags",
+	"author": "@skyra",
+	"license": "MIT",
 	"private": false,
+	"homepage": "https://skyra-project.github.io/tags",
 	"files": [
-		"dist"
+		"dist",
+		"!dist/*.tsbuildinfo"
 	],
 	"scripts": {
 		"lint": "eslint src tests --ext ts --fix",
@@ -33,13 +34,13 @@
 	"devDependencies": {
 		"@commitlint/cli": "^11.0.0",
 		"@commitlint/config-conventional": "^11.0.0",
-		"@sapphire/eslint-config": "^2.1.1",
-		"@sapphire/prettier-config": "^1.0.6",
-		"@sapphire/ts-config": "^2.0.0",
+		"@sapphire/eslint-config": "^2.1.2",
+		"@sapphire/prettier-config": "^1.0.7",
+		"@sapphire/ts-config": "^2.0.1",
 		"@types/jest": "^26.0.20",
-		"@types/node": "^14.14.27",
-		"@typescript-eslint/eslint-plugin": "^4.15.0",
-		"@typescript-eslint/parser": "^4.15.0",
+		"@types/node": "^14.14.28",
+		"@typescript-eslint/eslint-plugin": "^4.15.1",
+		"@typescript-eslint/parser": "^4.15.1",
 		"cz-conventional-changelog": "^3.3.0",
 		"eslint": "^7.20.0",
 		"eslint-config-prettier": "^7.2.0",
@@ -51,14 +52,14 @@
 		"pinst": "^2.1.4",
 		"prettier": "^2.2.1",
 		"pretty-quick": "^3.1.0",
-		"rollup": "^2.38.5",
+		"rollup": "^2.39.0",
 		"rollup-plugin-cleaner": "^1.0.0",
 		"rollup-plugin-terser": "^7.0.2",
-		"rollup-plugin-typescript2": "^0.29.0",
-		"standard-version": "^9.1.0",
+		"rollup-plugin-typescript2": "^0.30.0",
+		"standard-version": "^9.1.1",
 		"ts-jest": "^26.5.1",
 		"ts-node": "^9.1.1",
-		"typedoc": "^0.20.24",
+		"typedoc": "^0.20.25",
 		"typescript": "^4.1.5"
 	},
 	"repository": {
@@ -66,7 +67,7 @@
 		"url": "git+https://github.com/skyra-project/tags.git"
 	},
 	"engines": {
-		"node": ">=12",
+		"node": ">=14",
 		"npm": ">=6"
 	},
 	"keywords": [
@@ -102,7 +103,8 @@
 		"kind-of": "^6.0.3",
 		"jest-environment-jsdom": "https://registry.yarnpkg.com/@favware/skip-dependency/-/skip-dependency-1.0.2.tgz",
 		"jest-jasmine2": "https://registry.yarnpkg.com/@favware/skip-dependency/-/skip-dependency-1.0.2.tgz",
-		"dot-prop": "^6.0.1"
+		"dot-prop": "^6.0.1",
+		"marked": "^2.0.0"
 	},
 	"prettier": "@sapphire/prettier-config"
 }
