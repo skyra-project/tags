@@ -1,6 +1,4 @@
 import { SentenceMissingArgumentError } from '../errors/SentenceMissingArgumentError';
-import { Lexer } from '../parser/Lexer';
-import { Parser } from '../parser/Parser';
 import type { Tag } from './Tag';
 
 export const enum SentencePartType {
@@ -38,10 +36,6 @@ export class Sentence {
 
 	public toString(): string {
 		return this.parts.map((part) => (part.type === SentencePartType.Literal ? part.value : part.value.toString())).join('');
-	}
-
-	public static from(content: string) {
-		return new this(new Parser(new Lexer(content)).parse());
 	}
 }
 
