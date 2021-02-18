@@ -2,17 +2,16 @@
 	"name": "@skyra/tags",
 	"version": "1.0.0",
 	"description": "An advanced tags system for custom commands",
-	"main": "dist/index.js",
-	"module": "dist/index.es.js",
-	"types": "dist/index.d.ts",
 	"author": "@skyra",
 	"license": "MIT",
-	"private": false,
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
+	"exports": {
+		"import": "./dist/index.mjs",
+		"require": "./dist/index.js"
+	},
 	"homepage": "https://skyra-project.github.io/tags",
-	"files": [
-		"dist",
-		"!dist/*.tsbuildinfo"
-	],
 	"scripts": {
 		"lint": "eslint src tests scripts --ext mjs,ts --fix",
 		"format": "prettier --write {src,tests,scripts}/**/*.{mjs,ts}",
@@ -21,6 +20,7 @@
 		"test:watch": "jest --watch",
 		"update": "yarn upgrade-interactive --latest",
 		"build": "tsc -b src",
+		"postbuild": "gen-esm-wrapper dist/index.js dist/index.mjs",
 		"clean": "tsc -b src --clean",
 		"watch": "tsc -b src -w",
 		"sversion": "standard-version",
@@ -44,6 +44,7 @@
 		"eslint": "^7.20.0",
 		"eslint-config-prettier": "^7.2.0",
 		"eslint-plugin-prettier": "^3.3.1",
+		"gen-esm-wrapper": "^1.1.1",
 		"husky": "^5.0.9",
 		"jest": "^26.6.3",
 		"jest-circus": "^26.6.3",
@@ -61,6 +62,10 @@
 		"type": "git",
 		"url": "git+https://github.com/skyra-project/tags.git"
 	},
+	"files": [
+		"dist",
+		"!dist/*.tsbuildinfo"
+	],
 	"engines": {
 		"node": ">=14",
 		"npm": ">=6"
