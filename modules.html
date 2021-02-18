@@ -70,6 +70,7 @@
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-class"><a href="classes/lexer.html" class="tsd-kind-icon">Lexer</a></li>
+								<li class="tsd-kind-class"><a href="classes/mismatchingnamedargumenttypevalidationerror.html" class="tsd-kind-icon">Mismatching<wbr>Named<wbr>Argument<wbr>Type<wbr>Validation<wbr>Error</a></li>
 								<li class="tsd-kind-class"><a href="classes/parser.html" class="tsd-kind-icon">Parser</a></li>
 								<li class="tsd-kind-class"><a href="classes/parseremptystringtagerror.html" class="tsd-kind-icon">Parser<wbr>Empty<wbr>String<wbr>Tag<wbr>Error</a></li>
 								<li class="tsd-kind-class"><a href="classes/parsermissingtokenerror.html" class="tsd-kind-icon">Parser<wbr>Missing<wbr>Token<wbr>Error</a></li>
@@ -85,6 +86,7 @@
 								<li class="tsd-kind-class"><a href="classes/tag.html" class="tsd-kind-icon">Tag</a></li>
 								<li class="tsd-kind-class"><a href="classes/transformer.html" class="tsd-kind-icon">Transformer</a></li>
 								<li class="tsd-kind-class"><a href="classes/transformerinvalidformattererror.html" class="tsd-kind-icon">Transformer<wbr>Invalid<wbr>Formatter<wbr>Error</a></li>
+								<li class="tsd-kind-class"><a href="classes/unreachable.html" class="tsd-kind-icon">Unreachable</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -125,7 +127,7 @@
 					<div class="tsd-signature tsd-kind-icon">Part<span class="tsd-signature-symbol">:</span> <a href="interfaces/partliteral.html" class="tsd-signature-type" data-tsd-kind="Interface">PartLiteral</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/partspace.html" class="tsd-signature-type" data-tsd-kind="Interface">PartSpace</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/parttagstart.html" class="tsd-signature-type" data-tsd-kind="Interface">PartTagStart</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/parttagend.html" class="tsd-signature-type" data-tsd-kind="Interface">PartTagEnd</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/partequals.html" class="tsd-signature-type" data-tsd-kind="Interface">PartEquals</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/partcolon.html" class="tsd-signature-type" data-tsd-kind="Interface">PartColon</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/partpipe.html" class="tsd-signature-type" data-tsd-kind="Interface">PartPipe</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/23389bf/src/lib/parser/Lexer.ts#L70">lib/parser/Lexer.ts:70</a></li>
+							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/3f57d6a/src/lib/parser/Lexer.ts#L70">lib/parser/Lexer.ts:70</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -135,7 +137,7 @@
 					<div class="tsd-signature tsd-kind-icon">Part<wbr>Iterator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="modules.html#readonlypart" class="tsd-signature-type" data-tsd-kind="Type alias">ReadonlyPart</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/23389bf/src/lib/parser/Lexer.ts#L72">lib/parser/Lexer.ts:72</a></li>
+							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/3f57d6a/src/lib/parser/Lexer.ts#L72">lib/parser/Lexer.ts:72</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -145,17 +147,17 @@
 					<div class="tsd-signature tsd-kind-icon">Pick<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ReadonlyMap</span><span class="tsd-signature-symbol">&lt;</span><a href="modules.html#pickmapkey" class="tsd-signature-type" data-tsd-kind="Type alias">PickMapKey</a><span class="tsd-signature-symbol">, </span><a href="modules.html#pickmapvalue" class="tsd-signature-type" data-tsd-kind="Type alias">PickMapValue</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/23389bf/src/lib/structures/Pick.ts#L26">lib/structures/Pick.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/3f57d6a/src/lib/structures/Pick.ts#L35">lib/structures/Pick.ts:35</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias">
 					<a name="pickmapkey" class="tsd-anchor"></a>
 					<h3>Pick<wbr>Map<wbr>Key</h3>
-					<div class="tsd-signature tsd-kind-icon">Pick<wbr>Map<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">typeof </span><a href="classes/pick.html#kfallback" class="tsd-signature-type" data-tsd-kind="Property">kFallback</a></div>
+					<div class="tsd-signature tsd-kind-icon">Pick<wbr>Map<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">typeof </span><a href="classes/pick.html#fallback" class="tsd-signature-type" data-tsd-kind="Property">fallback</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/23389bf/src/lib/structures/Pick.ts#L24">lib/structures/Pick.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/3f57d6a/src/lib/structures/Pick.ts#L33">lib/structures/Pick.ts:33</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -165,7 +167,7 @@
 					<div class="tsd-signature tsd-kind-icon">Pick<wbr>Map<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/23389bf/src/lib/structures/Pick.ts#L25">lib/structures/Pick.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/3f57d6a/src/lib/structures/Pick.ts#L34">lib/structures/Pick.ts:34</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -175,7 +177,7 @@
 					<div class="tsd-signature tsd-kind-icon">Readonly<wbr>Part<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="modules.html#part" class="tsd-signature-type" data-tsd-kind="Type alias">Part</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/23389bf/src/lib/parser/Lexer.ts#L71">lib/parser/Lexer.ts:71</a></li>
+							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/3f57d6a/src/lib/parser/Lexer.ts#L71">lib/parser/Lexer.ts:71</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -185,7 +187,7 @@
 					<div class="tsd-signature tsd-kind-icon">Sentence<wbr>Part<span class="tsd-signature-symbol">:</span> <a href="interfaces/sentencepartliteral.html" class="tsd-signature-type" data-tsd-kind="Interface">SentencePartLiteral</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/sentenceparttag.html" class="tsd-signature-type" data-tsd-kind="Interface">SentencePartTag</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/23389bf/src/lib/structures/Sentence.ts#L48">lib/structures/Sentence.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/3f57d6a/src/lib/structures/Sentence.ts#L58">lib/structures/Sentence.ts:58</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -209,6 +211,9 @@
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/lexer.html" class="tsd-kind-icon">Lexer</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/mismatchingnamedargumenttypevalidationerror.html" class="tsd-kind-icon">Mismatching<wbr>Named<wbr>Argument<wbr>Type<wbr>Validation<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/parser.html" class="tsd-kind-icon">Parser</a>
@@ -254,6 +259,9 @@
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/transformerinvalidformattererror.html" class="tsd-kind-icon">Transformer<wbr>Invalid<wbr>Formatter<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/unreachable.html" class="tsd-kind-icon">Unreachable</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/iformatter.html" class="tsd-kind-icon">IFormatter</a>
@@ -325,10 +333,11 @@
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 		</div>
 	</div>

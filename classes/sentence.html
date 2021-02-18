@@ -81,16 +81,18 @@
 								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="sentence.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
+						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="sentence.html#kparts" class="tsd-kind-icon">k<wbr>Parts</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="sentence.html#parts" class="tsd-kind-icon">parts</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="sentence.html#_symbol_iterator_" class="tsd-kind-icon">[<wbr>Symbol.iterator]</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="sentence.html#run" class="tsd-kind-icon">run</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="sentence.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="sentence.html#from" class="tsd-kind-icon">from</a></li>
 							</ul>
 						</section>
 					</div>
@@ -108,7 +110,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/skyra-project/tags/blob/23389bf/src/lib/structures/Sentence.ts#L10">lib/structures/Sentence.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/skyra-project/tags/blob/3f57d6a/src/lib/structures/Sentence.ts#L12">lib/structures/Sentence.ts:12</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -122,15 +124,15 @@
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="kparts" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> k<wbr>Parts</h3>
-					<div class="tsd-signature tsd-kind-icon">k<wbr>Parts<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">readonly </span><a href="../modules.html#sentencepart" class="tsd-signature-type" data-tsd-kind="Type alias">SentencePart</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = ...</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="parts" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> parts</h3>
+					<div class="tsd-signature tsd-kind-icon">parts<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">readonly </span><a href="../modules.html#sentencepart" class="tsd-signature-type" data-tsd-kind="Type alias">SentencePart</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/23389bf/src/lib/structures/Sentence.ts#L10">lib/structures/Sentence.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/skyra-project/tags/blob/3f57d6a/src/lib/structures/Sentence.ts#L12">lib/structures/Sentence.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -138,19 +140,59 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="_symbol_iterator_" class="tsd-anchor"></a>
-					<h3>[<wbr>Symbol.iterator]</h3>
+					<a name="run" class="tsd-anchor"></a>
+					<h3>run</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">[<wbr>Symbol.iterator]<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><a href="tag.html" class="tsd-signature-type" data-tsd-kind="Class">Tag</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">run<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><a href="tag.html" class="tsd-signature-type" data-tsd-kind="Class">Tag</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/skyra-project/tags/blob/23389bf/src/lib/structures/Sentence.ts#L16">lib/structures/Sentence.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/skyra-project/tags/blob/3f57d6a/src/lib/structures/Sentence.ts#L18">lib/structures/Sentence.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><a href="tag.html" class="tsd-signature-type" data-tsd-kind="Class">Tag</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="tostring" class="tsd-anchor"></a>
+					<h3>to<wbr>String</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>String<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/skyra-project/tags/blob/3f57d6a/src/lib/structures/Sentence.ts#L39">lib/structures/Sentence.ts:39</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="from" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> from</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">from<span class="tsd-signature-symbol">(</span>content<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="sentence.html" class="tsd-signature-type" data-tsd-kind="Class">Sentence</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/skyra-project/tags/blob/3f57d6a/src/lib/structures/Sentence.ts#L43">lib/structures/Sentence.ts:43</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>content: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="sentence.html" class="tsd-signature-type" data-tsd-kind="Class">Sentence</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -174,6 +216,9 @@
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="lexer.html" class="tsd-kind-icon">Lexer</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="mismatchingnamedargumenttypevalidationerror.html" class="tsd-kind-icon">Mismatching<wbr>Named<wbr>Argument<wbr>Type<wbr>Validation<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="parser.html" class="tsd-kind-icon">Parser</a>
@@ -213,11 +258,17 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="sentence.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="sentence.html#kparts" class="tsd-kind-icon">k<wbr>Parts</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="sentence.html#parts" class="tsd-kind-icon">parts</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="sentence.html#_symbol_iterator_" class="tsd-kind-icon">[<wbr>Symbol.iterator]</a>
+								<a href="sentence.html#run" class="tsd-kind-icon">run</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="sentence.html#tostring" class="tsd-kind-icon">to<wbr>String</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="sentence.html#from" class="tsd-kind-icon">from</a>
 							</li>
 						</ul>
 					</li>
@@ -234,6 +285,9 @@
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="transformerinvalidformattererror.html" class="tsd-kind-icon">Transformer<wbr>Invalid<wbr>Formatter<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="unreachable.html" class="tsd-kind-icon">Unreachable</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/iformatter.html" class="tsd-kind-icon">IFormatter</a>
@@ -305,10 +359,11 @@
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 		</div>
 	</div>
