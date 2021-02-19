@@ -37,6 +37,10 @@ export class Sentence {
 	public toString(): string {
 		return this.parts.map((part) => (part.type === SentencePartType.Literal ? part.value : part.value.toString())).join('');
 	}
+
+	public toJSON(): string {
+		return this.toString();
+	}
 }
 
 export interface SentencePartLiteral {

@@ -90,4 +90,14 @@ describe('Sentence', () => {
 
 		expect(sentence.toString()).toBe('Hello {name:string | uppercase}!');
 	});
+
+	test('toJSON() | Equals toString', () => {
+		const sentence = new Sentence([
+			{ type: SentencePartType.Literal, value: 'Hello ' },
+			{ type: SentencePartType.Tag, value: new Tag('name', '', null, [new Transformer('uppercase')]) },
+			{ type: SentencePartType.Literal, value: '!' }
+		]);
+
+		expect(sentence.toJSON()).toBe(sentence.toString());
+	});
 });
