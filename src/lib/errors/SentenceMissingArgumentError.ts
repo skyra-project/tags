@@ -1,5 +1,7 @@
-export class SentenceMissingArgumentError extends Error {
+import { Identifiers, UserError } from './base/UserError';
+
+export class SentenceMissingArgumentError extends UserError {
 	public constructor() {
-		super('An argument must be specified.');
+		super(Identifiers.SentenceMissingArgument, 'An argument must be specified.');
 	}
 }

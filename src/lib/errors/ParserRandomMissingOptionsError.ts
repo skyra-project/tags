@@ -1,5 +1,7 @@
-export class ParserRandomMissingOptionsError extends SyntaxError {
+import { Identifiers, UserError } from './base/UserError';
+
+export class ParserRandomMissingOptionsError extends UserError {
 	public constructor() {
-		super('Random tags must have at least two items.');
+		super(Identifiers.ParserRandomMissingOptions, 'Random tags must have at least two items.');
 	}
 }
