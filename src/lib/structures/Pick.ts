@@ -15,7 +15,7 @@ export class Pick implements ISentencePart {
 		const fallback = this.options.get(Pick.fallback);
 		if (typeof fallback === 'string') return fallback;
 
-		throw new PickInvalidOptionError(this, key, `The key ${key} is not a valid option.`);
+		throw new PickInvalidOptionError(this, key);
 	}
 
 	public toString(): string {

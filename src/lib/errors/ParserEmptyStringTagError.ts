@@ -1,5 +1,7 @@
-export class ParserEmptyStringTagError extends SyntaxError {
+import { Identifiers, UserError } from './base/UserError';
+
+export class ParserEmptyStringTagError extends UserError {
 	public constructor() {
-		super('String tags must have at least one character.');
+		super(Identifiers.ParserEmptyStringTag, 'String tags must have at least one character.');
 	}
 }

@@ -1,11 +1,15 @@
 import { PartType } from '../parser/Lexer';
+import { Identifiers, UserError } from './base/UserError';
 
-export class ParserUnexpectedTokenError extends SyntaxError {
+export class ParserUnexpectedTokenError extends UserError {
 	public readonly expected: PartType | readonly PartType[];
 	public readonly received: PartType;
 
 	public constructor(expected: PartType | PartType[], received: PartType) {
-		super(`Expected ${ParserUnexpectedTokenError.getTypeName(expected)}, received ${ParserUnexpectedTokenError.getTypeName(received)}`);
+		super(
+			Identifiers.ParserUnexpectedToken,
+			`Expected ${ParserUnexpectedTokenError.getTypeName(expected)}, received ${ParserUnexpectedTokenError.getTypeName(received)}`
+		);
 		this.expected = expected;
 		this.received = received;
 	}

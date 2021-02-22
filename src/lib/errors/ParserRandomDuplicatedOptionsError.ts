@@ -1,5 +1,7 @@
-export class ParserRandomDuplicatedOptionsError extends SyntaxError {
+import { Identifiers, UserError } from './base/UserError';
+
+export class ParserRandomDuplicatedOptionsError extends UserError {
 	public constructor() {
-		super('Random tags cannot have duplicated items.');
+		super(Identifiers.ParserRandomDuplicatedOptions, 'Random tags cannot have duplicated items.');
 	}
 }
