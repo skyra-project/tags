@@ -1,14 +1,14 @@
 export const enum Identifiers {
-	MismatchingNamedArgumentTypeValidation = 'MismatchingNamedArgumentTypeValidation',
-	ParserEmptyStringTag = 'ParserEmptyStringTag',
-	ParserMissingToken = 'ParserMissingToken',
-	ParserPickMissingOptions = 'ParserPickMissingOptions',
-	ParserRandomDuplicatedOptions = 'ParserRandomDuplicatedOptions',
-	ParserRandomMissingOptions = 'ParserRandomMissingOptions',
-	ParserUnexpectedToken = 'ParserUnexpectedToken',
-	PickInvalidOption = 'PickInvalidOption',
-	SentenceMissingArgument = 'SentenceMissingArgument',
-	TransformerInvalidFormatter = 'TransformerInvalidFormatter'
+	MismatchingNamedArgumentTypeValidation = 'mismatchingNamedArgumentTypeValidation',
+	ParserEmptyStringTag = 'parserEmptyStringTag',
+	ParserMissingToken = 'parserMissingToken',
+	ParserPickMissingOptions = 'parserPickMissingOptions',
+	ParserRandomDuplicatedOptions = 'parserRandomDuplicatedOptions',
+	ParserRandomMissingOptions = 'parserRandomMissingOptions',
+	ParserUnexpectedToken = 'parserUnexpectedToken',
+	PickInvalidOption = 'pickInvalidOption',
+	SentenceMissingArgument = 'sentenceMissingArgument',
+	TransformerInvalidFormatter = 'transformerInvalidFormatter'
 }
 
 export class UserError extends Error {
@@ -19,6 +19,6 @@ export class UserError extends Error {
 	}
 
 	public get name() {
-		return `${this.constructor.name}[${this.identifier}]`;
+		return this.constructor.name;
 	}
 }
