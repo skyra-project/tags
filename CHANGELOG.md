@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/skyra-project/tags/compare/v1.0.2...v1.1.0) (2021-02-23)
+
+### Features
+
+-   **errors:** added identifier property ([#30](https://github.com/skyra-project/tags/issues/30)) ([688cfd8](https://github.com/skyra-project/tags/commit/688cfd89ae8be2e5c6cf591af2d8b598730fb213))
+
+### Bug Fixes
+
+-   make identifiers camelCase ([#31](https://github.com/skyra-project/tags/issues/31)) ([a006c09](https://github.com/skyra-project/tags/commit/a006c09e9817a01242c0aa3a6386c7d0d8a27d66))
+
 ### [1.0.2](https://github.com/skyra-project/tags/compare/v1.0.1...v1.0.2) (2021-02-19)
 
 ### Bug Fixes
