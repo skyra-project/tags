@@ -5,9 +5,7 @@
 **An advanced tags system for custom commands**
 
 [![GitHub](https://img.shields.io/github/license/skyra-project/tags)](https://github.com/skyra-project/tags/blob/main/LICENSE.md)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/skyra-project/tags.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/skyra-project/tags/alerts/)
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/skyra-project/tags.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/skyra-project/tags/context:javascript)
-[![Coverage Status](https://coveralls.io/repos/github/skyra-project/tags/badge.svg?branch=main)](https://coveralls.io/github/skyra-project/tags?branch=main)
+[![codecov](https://codecov.io/gh/skyra-project/audio/branch/main/graph/badge.svg?token=DH5G4MJQZM)](https://codecov.io/gh/skyra-project/audio)
 [![Depfu](https://badges.depfu.com/badges/bf9d66331db86da298b9ef3d47543270/count.svg)](https://depfu.com/github/skyra-project/tags?project_id=16849)
 
 [![npm](https://img.shields.io/npm/v/@skyra/tags?color=crimson&label=NPM&logo=npm&style=flat-square)](https://www.npmjs.com/package/@skyra/tags)
