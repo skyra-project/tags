@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/skyra-project/tags/compare/v1.1.0...v1.1.1) (2021-05-19)
+
+### Bug Fixes
+
+-   mark package as side effect free ([4f114bf](https://github.com/skyra-project/tags/commit/4f114bf6d33cd3ef29596a4a5ede84a3779b8c4c))
+
 ## [1.1.0](https://github.com/skyra-project/tags/compare/v1.0.2...v1.1.0) (2021-02-23)
 
 ### Features
