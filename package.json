@@ -22,7 +22,7 @@
 		"update": "yarn upgrade-interactive --latest",
 		"build": "tsc -b src",
 		"postbuild": "gen-esm-wrapper dist/index.js dist/index.mjs",
-		"clean": "tsc -b src --clean",
+		"clean": "node scripts/clean.mjs",
 		"watch": "tsc -b src -w",
 		"sversion": "standard-version",
 		"commit": "git-cz",
