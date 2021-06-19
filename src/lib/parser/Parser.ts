@@ -75,7 +75,7 @@ export class Parser {
 	}
 
 	private nextExcluding(excluded: PartType) {
-		let part: ReadonlyPart | undefined = undefined;
+		let part: ReadonlyPart;
 		while ((part = this.next()).type === excluded) continue;
 
 		return part;
