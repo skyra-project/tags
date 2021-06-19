@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.3](https://github.com/skyra-project/tags/compare/v1.1.2...v1.1.3) (2021-06-19)
+
+### Bug Fixes
+
+-   bump gen-esm-wrapper to fix ESM build ([d06ad04](https://github.com/skyra-project/tags/commit/d06ad04449fb634261a695e5b255a65b2e03e556))
+
 ### [1.1.2](https://github.com/skyra-project/tags/compare/v1.1.1...v1.1.2) (2021-05-19)
 
 ### Bug Fixes
