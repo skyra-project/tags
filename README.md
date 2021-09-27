@@ -6,7 +6,6 @@
 
 [![GitHub](https://img.shields.io/github/license/skyra-project/tags)](https://github.com/skyra-project/tags/blob/main/LICENSE.md)
 [![codecov](https://codecov.io/gh/skyra-project/audio/branch/main/graph/badge.svg?token=DH5G4MJQZM)](https://codecov.io/gh/skyra-project/audio)
-[![Depfu](https://badges.depfu.com/badges/bf9d66331db86da298b9ef3d47543270/count.svg)](https://depfu.com/github/skyra-project/tags?project_id=16849)
 
 [![npm](https://img.shields.io/npm/v/@skyra/tags?color=crimson&label=NPM&logo=npm&style=flat-square)](https://www.npmjs.com/package/@skyra/tags)
 ![npm bundle size minified (scoped)](https://img.shields.io/bundlephobia/min/@skyra/tags?label=minified&logo=webpack)
