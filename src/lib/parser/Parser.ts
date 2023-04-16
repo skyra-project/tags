@@ -5,12 +5,12 @@ import { ParserPickMissingOptionsError } from '../errors/ParserPickMissingOption
 import { ParserRandomDuplicatedOptionsError } from '../errors/ParserRandomDuplicatedOptionsError';
 import { ParserRandomMissingOptionsError } from '../errors/ParserRandomMissingOptionsError';
 import { ParserUnexpectedTokenError } from '../errors/ParserUnexpectedTokenError';
-import { Pick, PickMapKey } from '../structures/Pick';
+import { Pick, type PickMapKey } from '../structures/Pick';
 import { Random } from '../structures/Random';
-import { SentencePart, SentencePartType } from '../structures/Sentence';
+import { SentencePartType, type SentencePart } from '../structures/Sentence';
 import { Tag } from '../structures/Tag';
 import { Transformer } from '../structures/Transformer';
-import { Lexer, PartIterator, PartType, ReadonlyPart } from './Lexer';
+import { Lexer, PartType, type PartIterator, type ReadonlyPart } from './Lexer';
 
 export class Parser {
 	public readonly tags: Tag[] = [];

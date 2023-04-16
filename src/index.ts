@@ -1,3 +1,5 @@
+import 'tslib';
+
 export * from './lib/errors/base/UserError';
 export * from './lib/errors/MismatchingNamedArgumentTypeValidationError';
 export * from './lib/errors/ParserEmptyStringTagError';
