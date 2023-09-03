@@ -18,7 +18,7 @@ export class UserError extends Error {
 		this.identifier = identifier;
 	}
 
-	public get name() {
+	public override get name() {
 		return this.constructor.name;
 	}
 }
