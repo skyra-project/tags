@@ -22,8 +22,7 @@
 		"clean": "node scripts/clean.mjs",
 		"watch": "tsc -b src -w",
 		"sversion": "standard-version",
-		"prepublishOnly": "yarn build",
-		"prepare": "husky install .github/husky"
+		"prepack": "yarn build"
 	},
 	"dependencies": {
 		"tslib": "^2.6.2"
@@ -43,7 +42,6 @@
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-prettier": "^5.0.0",
 		"gen-esm-wrapper": "^1.1.3",
-		"husky": "^8.0.3",
 		"lint-staged": "^15.0.1",
 		"prettier": "^3.0.3",
 		"standard-version": "^9.5.0",
